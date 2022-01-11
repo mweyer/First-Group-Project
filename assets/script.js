@@ -56,4 +56,16 @@ fetch(apiUrl, {
                 // }
 
               });
+
+
+              $('.card').click(function(){
+                $('#modal-card').modal();
+                $('.modal-content').append( $(this).find('h6'));
+                $('#modal-card').modal('open'); 
+             });
+                
+        $(document).ready(function(){
+        $('.carousel').carousel();
+        });
+        
             

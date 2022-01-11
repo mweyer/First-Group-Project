@@ -1,0 +1,32 @@
+body{
+   height: 100vh; 
+}
+.carousel .carousel-item {
+    width: 340px !important;
+    background: none;
+    border: none;
+}
+.carousel-slider{
+    align-content: center;
+    height: 80vh;
+}
+.btn{
+    right: -40%;
+    margin: 2%;
+}
+button{
+    cursor: pointer;
+}
+.header{
+    text-align: center;
+    background-color: #2B3A67;
+    color: whitesmoke;
+    font-size: 3em;
+    padding: 2% 0;
+}
+
+.card{ 
+    border-radius: 8px; 
+    position: relative !important;
+    right: 20px !important;
+}
