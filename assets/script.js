@@ -1,65 +1,8 @@
-var petImage = document.querySelector('#pet-image');
-var petName = document.querySelector('.card-title');
-var petDescription = document.querySelector('.card-content');
-var resultContainer = document.querySelector('#results');
+// the styling stays the same even without this code
+// but material documentation says to include it
 
-// The URL below is set to search for dogs
-var apiUrl = "https://api.rescuegroups.org/v5/public/animals/search/available/dogs/";
-
-fetch(apiUrl, {
-        headers: {
-                'Content-Type': 'application/vnd.api+json',
-                'Authorization': 'D5eT1vpr',
-                // Above: our API key
-        }
-})
-        .then(function (response) {
-                return response.json();
-        })
-        .then(function (responseBody) {
-                petImage.setAttribute("src", responseBody.data[0].attributes.pictureThumbnailUrl);
-                petName.textContent = responseBody.data[0].attributes.pictureThumbnailUrl;
-                petDescription.innerHTML = responseBody.data[0].attributes.descriptionHtml;   
-                // For debugging:
-                // console.log(responseBody);
-                // console.log(responseBody.data[0].attributes.pictureThumbnailUrl);
-                // TODO: Create a result variable that can be referenced instead of the data for the loop below. This variable will be populated based upon actions on the second HTML page
-                var listOfIds = [];
-                responseBody.data.forEach(element => {
-                        listOfIds.push(element.id);
-                });
-                localStorage.setItem('listOfIds', JSON.stringify(listOfIds));
-
-
-                //For loop to append result data to the results page
-                // for (var i = 0; i < result.length; i++)
-                // {
-                //      var resultPetImage = document.createElement('img');
-                //      var resultPetName = document.createElement('h3');
-                //      var resultPetType = document.createElement('p');
-                //      var resultPetAge = document.createElement('p');
-                //      var resultPetBreed = document.createElement('p');
-                //      var resultPetLocation = document.createElement('p');
-                //      var resultPetDescription = document.createElement('p');
-                //      var resultPetAdoptionLink = document.createElement('p');
-
-                //TODO: Need to find other attributes to populate the remaining sections
-                //Adding the text content from the collected results so they can be later appended to the results html page
-                //      resultPetImage.textContent = result[i].attributes.pictureThumbnailUrl;
-                //      resultPetName.textContent = "Name: " + result[i].attributes.name;
-                //      resultPetName.textContent = "Description: " + result[i].attributes.descriptionHtml;
-
-                //Append section that will attach the above text content and apply it to the resultContainer on the results html page
-                //      resultContainer.append(resultPetName);
-                //      resultContainer.append(resultPetType);
-                //      resultContainer.append(resultPetAge);
-                //      resultContainer.append(resultPetBreed);
-                //      resultContainer.append(resultPetLocation);
-                //      resultContainer.append(resultPetDescription);
-                //      resultContainer.append(resultPetAdoptionLink);
-                // }
-
-              });        
-
-
-        
+M.AutoInit();
+$(document).ready(function() {
+    $('select').formSelect();
+});
+var instance = M.FormSelect.getInstance(elem);

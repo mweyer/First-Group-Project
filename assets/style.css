@@ -1,0 +1,15 @@
+nav {
+    background-color: rgb(112, 200, 255);
+}
+
+label span {
+    color: white;
+}
+
+.spacer {
+    visibility: hidden;
+}
+
+.card-title.pet-facts {
+    font-size: 20px;
+}
