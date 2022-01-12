@@ -1,3 +1,9 @@
+
+*{
+    visibility:visible;
+
+}
+
 body{
    height: 100vh; 
 }
@@ -5,18 +11,23 @@ body{
     width: 340px !important;
     background: none;
     border: none;
+    overflow: visible;
 }
+
 .carousel-slider{
     align-content: center;
     height: 80vh;
 }
+
 .btn{
     right: -40%;
     margin: 2%;
 }
+
 button{
     cursor: pointer;
 }
+
 .header{
     text-align: center;
     background-color: #2B3A67;
