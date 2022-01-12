@@ -16,16 +16,20 @@ fetch(apiUrl, {
         .then(function (response) {
                 return response.json();
         })
-        .then(function (data) {
-                petImage.setAttribute("src", data.data[0].attributes.pictureThumbnailUrl);
-                petName.textContent = data.data[0].attributes.name;
-                petDescription.innerHTML = data.data[0].attributes.descriptionHtml;
+        .then(function (responseBody) {
+                petImage.setAttribute("src", responseBody.data[0].attributes.pictureThumbnailUrl);
+                petName.textContent = responseBody.data[0].attributes.pictureThumbnailUrl;
+                petDescription.innerHTML = responseBody.data[0].attributes.descriptionHtml;   
                 // For debugging:
-                console.log(data);
-                console.log(data.data[0].attributes.pictureThumbnailUrl);
-
-
+                // console.log(responseBody);
+                // console.log(responseBody.data[0].attributes.pictureThumbnailUrl);
                 // TODO: Create a result variable that can be referenced instead of the data for the loop below. This variable will be populated based upon actions on the second HTML page
+                var listOfIds = [];
+                responseBody.data.forEach(element => {
+                        listOfIds.push(element.id);
+                });
+                localStorage.setItem('listOfIds', JSON.stringify(listOfIds));
+
 
                 //For loop to append result data to the results page
                 // for (var i = 0; i < result.length; i++)
@@ -55,5 +59,7 @@ fetch(apiUrl, {
                 //      resultContainer.append(resultPetAdoptionLink);
                 // }
 
-              });
-            
+              });        
+
+
+        
