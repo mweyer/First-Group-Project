@@ -29,9 +29,9 @@ function updateCarouselCards(animalData) {
     document.getElementsByClassName('name').textContent = animalData.attributes.descriptionHtml;
 
     carouselItem.append(carouselCard);
-    carouselCard.append(carouselCardDescription);
     carouselCard.append(carouselImageBox);
     carouselImageBox.append(cardImage);
+    carouselCard.append(carouselCardDescription);
     carouselCardDescription.append(carouselAnimalName);
     carouselCardDescription.append(carouselAnimalDescription);
     console.log('Carousel added');
