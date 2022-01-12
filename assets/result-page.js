@@ -7,7 +7,6 @@ var apiUrl = "https://api.rescuegroups.org/v5/public/animals/";
 var arrayOfData = [];
 function updateCarouselCards(animalData) {
     animalData = animalData["data"][0]
-    console.log(animalData);
     arrayOfData.push(animalData);
     var carouselItem = document.createElement('button');
       carouselItem.classList.add("carousel-item");
@@ -22,24 +21,25 @@ function updateCarouselCards(animalData) {
     var carouselCardDescription = document.createElement('div');
       carouselCardDescription.classList.add('card-content');
     var carouselAnimalName = document.createElement('h6');
-     carouselAnimalName.classList.add('name')
+     carouselAnimalName.classList.add('name', 'card-title');
     var carouselAnimalDescription = document.createElement('p');
-
-    document.getElementsByClassName('name').textContent = animalData.attributes.name;
-    document.getElementsByClassName('name').textContent = animalData.attributes.descriptionHtml;
+      carouselAnimalDescription.classList.add('description');
 
     carouselItem.append(carouselCard);
     carouselCard.append(carouselImageBox);
     carouselImageBox.append(cardImage);
     carouselCard.append(carouselCardDescription);
+
+    carouselAnimalName.innerText = animalData.attributes.name;
+    carouselAnimalDescription.innerText = animalData.attributes.description;
+
     carouselCardDescription.append(carouselAnimalName);
     carouselCardDescription.append(carouselAnimalDescription);
-    console.log('Carousel added');
-    
+
     var carousel  = document.querySelector('.carousel-slider');
     carousel.classList.remove('initialized')
     carousel.append(carouselItem);
-      M.AutoInit();  
+
 }
 
   function getAnimalData(listOfIds){
@@ -57,14 +57,13 @@ function updateCarouselCards(animalData) {
       .then( function(responseBody){
         updateCarouselCards(responseBody);
       })
-
     });
   }
 
   function main(){
     var ids = JSON.parse(localStorage.getItem('listOfIds'))
     getAnimalData(ids);
-  }
+    }
   
   main();
 
