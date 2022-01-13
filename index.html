@@ -17,20 +17,30 @@
         <div class="nav-wrapper">
                   <img id="paw-img" src="./assets/paw-img.png">
                   <a class="brand-logo center">Furiendr</a>
-                  <a class="right waves-effect waves-light btn" id="furiends-button" href="">Furiend's List</a>
+                  <a class="right waves-effect waves-light btn" id="furiends-button" href="./furiends-list.html">Furiend's List</a>
         </div>
     </nav>
+    <main>
         <div class="row">
-          <!-- this is the pet facts card -->
-          <div class="pet-fact-card-large">
-            <div class="card horizontal">
-              <div class="card-content">
-                <span class="card-title">Pet Facts:</span>
-                <p class="dog-facts">Meow! Woof! Paws! Pick me! Insert manatee joke here or a cat/dog joke.</p>
+          <!-- these are both pet facts cards -->
+          <div class="pet-facts-column">
+            <div class="cat-fact-card-large">
+                <div class="card horizontal">
+                  <div class="card-content">
+                    <span class="card-title">Cat Facts:</span>
+                    <p class="cat-facts">Insert here!</p>
+                  </div>
+                </div>
+            </div>
+            <div class="dog-fact-card-large">
+              <div class="card horizontal">
+                <div class="card-content">
+                  <span class="card-title">Dog Facts:</span>
+                  <p class="dog-facts">Meow! Woof! Paws! Pick me! Insert manatee joke here or a cat/dog joke.</p>
+                </div>
               </div>
             </div>
           </div>
-
           <!-- this is the pet parameters card -->
           <div class="pet-parameters-card-large">
             <div class="card">
@@ -38,17 +48,24 @@
                 <!-- these are the materialize select inputs -->
                 <span class="card-title center">Pet Parameters</span>
                 <p>What kind of pet are you looking for?</p>
-                <select class="input-field">
+                <select class="input-field" id="type-parameter">
                   <option value="" disabled selected>Cat or Dog</option>
                   <option value="1">Cat</option>
                   <option value="2">Dog</option>
                 </select>
                 <br>
+                <p>Which gender?</p>
+                <select class="input-field" id="gender-parameter">
+                  <option value="" disabled selected>Male or Female</option>
+                  <option value="1">Male</option>
+                  <option value="2">Female</option>
+                </select>
+                <br>
                 <p>What type of breed?</p>
-                <input type="text" id="username" name="username">
+                <input type="text" id="size-parameter">
                 <br>
                 <p>What age?</p>
-                <select class="input-field">
+                <select class="input-field" id="age-parameter">
                   <option value="" disabled selected>Young, Adult, or Senior</option>
                   <option value="1">Young</option>
                   <option value="2">Adult</option>
@@ -56,7 +73,7 @@
                 </select>
                 <br>
                 <p>How about the coat length of your pet?</p>
-                <select class="input-field">
+                <select class="input-field" id="coat-parameter">
                   <option value="" disabled selected>Short, Medium, or Long</option>
                   <option value="1">Short</option>
                   <option value="2">Medium</option>
@@ -64,14 +81,20 @@
                 </select>
                 <br>
                 <!-- these are the checkboxes -->
-                <input type="checkbox" id="pet-parameter-1" name="pet-parameter-1"></input>
-                <span>Pictures are required</span>
+                <label>
+                  <input type="checkbox" id="pictures-parameter"></input>
+                  <span>Pictures are required</span>
+                </label>
                 <br>
-                <input type="checkbox" id="pet-parameter-2" name="pet-parameter-2"></input>
-                <span>Has all of their shots</span>
+                <label>
+                  <input type="checkbox" id="shots-parameter"></input>
+                  <span>Has all of their shots</span>
+                </label>
                 <br>
-                <input type="checkbox" id="pet-parameter-3" name="pet-parameter-3"></input>
-                <span>Okay around other pets</span>
+                <label>
+                  <input type="checkbox" id="pet-friendly-parameter"></input>
+                  <span>Okay around other pets</span>
+                </label>
                 <br>
             </div>
             <div class="card-action center">
@@ -79,18 +102,6 @@
             </div>
           </div>
         </div>
-         <!-- this is the second pet facts card -->
-         <div class="row">
-          <div class="col s12 m3">
-            <!-- temporary: hidden text to add a top margin -->
-            <h5 class="spacer">spacer</h5>
-            <div class="card horizontal">
-              <div class="card-content">
-                <h5>Cat Facts:</h5>
-                <a class="cat-facts">" "</a>
-              </div>
-            </div>
-      </div>
   </div>
 </main>
   <!--JavaScript at end of body for optimized loading-->
