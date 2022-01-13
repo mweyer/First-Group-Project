@@ -65,7 +65,6 @@ function refreshCarousel() {
 }
 
 function removeAnimalFromCarousel(){
-
   curSlide.classList.remove('carousel-item');
   document.querySelector('#carousel').removeChild(document.getElementById(curSlide.id));
   refreshCarousel();
