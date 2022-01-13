@@ -54,14 +54,19 @@ function refreshCarousel() {
     }
   });
   }else{
-    var modal = $('.modal').modal();
-    var remove = $('#remove-button');
-    var save =  $('#save-button');
-    remove.click($('#modal1').modal('open'));
-    save.click($('#modal1').modal('open'));
-    save.addClass('disabled');
-    remove.addClass('disabled');
+    openErrorModal();
   }
+}
+function openErrorModal() {
+  var modal = $('.modal').modal();
+  var footer = $('.footer');
+  var remove = $('#remove-button');
+  var save =  $('#save-button');
+  $('.loading').addClass('hide');
+
+  remove.click($('#modal1').modal('open'));
+  save.click($('#modal1').modal('open'));
+  footer.removeClass('hide');
 }
 
 function removeAnimalFromCarousel(){
@@ -75,29 +80,58 @@ function saveAnimalToLocalStorageAndRemove() {
   console.log(arrayOfData);
   removeAnimalFromCarousel();
 }
-  function getAnimalData(listOfIds){
-     var listOfPromises = listOfIds.map(element => {
-      return fetch(apiUrl+element, { 
-        headers: {
-        'Content-Type': 'application/vnd.api+json',
-        'Authorization': 'D5eT1vpr',
-        // Above: our API key
-      }
-    })
-      .then(function (response) {
-        return response.json();
-      })
-      .then( function(responseBody){
-        updateCarouselCards(responseBody);
-      })
-    });
-    Promise.allSettled(listOfPromises).then(function(){
-      console.log('Promises settled')
-      $('.loading').addClass('hide');
-      refreshCarousel();
-      $('.selection-buttons').removeClass('hide');
-    });
+  // function getAnimalData(listOfIds){
+  //    var listOfPromises = listOfIds.map(element => {
+  //     return fetch(apiUrl+element, { 
+  //       headers: {
+  //       'Content-Type': 'application/vnd.api+json',
+  //       'Authorization': 'D5eT1vpr',
+  //       // Above: our API key
+  //     }
+  //   })
+  //     .then(function (response) {
+  //       return response.json();
+  //     })
+  //     .then( function(responseBody){
+  //       updateCarouselCards(responseBody);
+  //     })
+  //   });
+  //   Promise.allSettled(listOfPromises).then(function(){
+  //     console.log('Promises settled')
+  //     $('.loading').addClass('hide');
+  //     refreshCarousel();
+  //     $('.selection-buttons').removeClass('hide');
+  //     document.querySelector('.footer').classList.add('hide');
+
+  //   });
+  // }
+
+  function getDataFromStorage() {
+    $('.carousel').addClass('hide');
+    var animalData = JSON.parse(localStorage.getItem('listOfIds'));
+    if (!animalData) {
+      openErrorModal();
+    }
+    document.querySelector('.carousel').classList.add('hide');
+    document.querySelector('.selection-buttons').classList.add('hide');
+    $('#remove-button').removeClass('disabled');
+    $('#save-button').removeClass('disabled');
+    getAnimalData(animalData)
   }
+
+  function getAnimalData(animalData){
+    animalData.forEach(element => {
+      updateCarouselCards(element);
+    }); 
+     $('.loading').addClass('hide');
+     refreshCarousel();
+     $('.selection-buttons').removeClass('hide');
+     document.querySelector('.footer').classList.add('hide');
+ }
+
+function main(){
+  getDataFromStorage()
+}
 
   document.querySelector('#remove-button').addEventListener('click',function() {
     console.log('Clicked! The current slide is: ' + curSlide.id);
@@ -109,21 +143,16 @@ function saveAnimalToLocalStorageAndRemove() {
     saveAnimalToLocalStorageAndRemove();
   });
   
-  document.querySelector('#furiends-button').addEventListener('click',function() {
+ $('#furiends-button, #furiends-footer-button').click(function() {
     console.log('Furiends List Clicked!');
-    localStorage.setItem('pettentials', JSON.stringify(animalData));
+    localStorage.setItem('pettentials', JSON.stringify(arrayOfData));
+    window.location = 'furiends-list.html';
+
   });
 
-function main(){
-  $('.carousel').addClass('hide');
-  var ids = JSON.parse(localStorage.getItem('listOfIds'))
-  document.querySelector('.carousel').classList.add('hide');
-  document.querySelector('.selection-buttons').classList.add('hide');
-  $('#remove-button').removeClass('disabled');
-  $('#save-button').removeClass('disabled');
-  getAnimalData(ids);
-  }
+  $('#restart-button, #restart-footer-button').click(function() {
+    console.log('Try again Clicked!');
+    window.location = 'index.html';
+  });
 
   main();
-
-

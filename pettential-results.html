@@ -7,17 +7,25 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="./assets/carousel-style.css">
+    <link rel="stylesheet" href="./assets/style.css"/>
 
 
 
 
 </head>
   <body>
-    <header class="header">
-      Furiendr
-      <button class="waves-effect waves-light btn">Furiend List</button>
-    </header>
-    <main>
+    <nav>
+      <div class="nav-wrapper">
+                <!-- temporary: hidden text to add padding -->
+                <a class="left spacer">spacer</a>
+                <img src="./assets/images/paw-img.png">
+                <a href="#" class="brand-logo center">Furiendr</a>
+                <!-- temporary: this is hidden text to add padding -->
+                <a class="right spacer">spacer</a>
+                <a class="right" href="">Furiend's List</a>
+      </div>
+  </nav>
+    <main class='main'>
       <div class="carousel carousel-slider" id='carousel'>
       </div>
         <div class= 'loading-screen'>
@@ -34,14 +42,17 @@
           <p>There are no pet-tential Furiends to be found here!</p>
         </div>
         <div class="modal-footer">
-          <button id='restart-button' class="modal-trigger waves-effect waves-light btn"><i class="material-icons left">restart_alt</i>Try Again</button> 
-          <button id='furiends-button' class="waves-effect waves-light btn"><i class="material-icons right" href='index.html'>pets</i>Fetch your Furiends List</button> 
+          <button id='restart-button'  class="waves-effect waves-light btn"  href= 'index.html'><i class="material-icons left">restart_alt</i>Try Again</button> 
+          <button id="furiends-button" class="waves-effect waves-light btn" href= 'furiends-list.html'><i class="material-icons right">pets</i>Fetch your Furiends List</button> 
         </div>
       </div>
 
 
     </main>
-
+    <footer class ='footer hide'>
+      <button id='restart-footer-button'  class="waves-effect waves-light btn" href= 'index.html'><i class="material-icons left">restart_alt</i>Try Again</button> 
+      <button id="furiends-footer-button"  class="waves-effect waves-light btn" href= 'furiends-list.html'><i class="material-icons right">pets</i>Fetch your Furiends List</button> 
+    </footer>
   </body>
   <!-- This version of JQuery version is needed for the carousel to work properly -->
   <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"> </script>
