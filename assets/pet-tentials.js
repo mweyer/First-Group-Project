@@ -46,7 +46,7 @@ function updateCarouselCards(animalData) {
 function refreshCarousel() {
   var carousel = $('#carousel');
   if(carousel.children().length) {
-  carousel.removeClass('hide');
+  removeHideClass(carousel);
   carousel.removeClass('initialized') 
   carousel.carousel({
     onCycleTo: function(data) {
@@ -59,14 +59,14 @@ function refreshCarousel() {
 }
 function openErrorModal() {
   var modal = $('.modal').modal();
-  var footer = $('.footer');
+  var footer = $('.pet-tential-footer');
   var remove = $('#remove-button');
   var save =  $('#save-button');
   $('.loading').addClass('hide');
 
   remove.click($('#modal1').modal('open'));
   save.click($('#modal1').modal('open'));
-  footer.removeClass('hide');
+  removeHideClass(footer);
 }
 
 function removeAnimalFromCarousel(){
@@ -81,27 +81,39 @@ function saveAnimalToLocalStorageAndRemove() {
   removeAnimalFromCarousel();
 }
 function getDataFromStorage() {
-  $('.carousel').addClass('hide');
-  var animalData = JSON.parse(localStorage.getItem('pettentials'));
-  if (!animalData) {
+  addHideClass($('.carousel'));
+  addHideClass($('.pet-tential-selection-buttons'));
+  var animalData = JSON.parse(localStorage.getItem('pettentials')) || [];
+  if (Array.isArray(animalData) && animalData.length > 0) {
+    console.log('In if statement')
+    getAnimalData(animalData);
+  }
+  else{
+    console.log('In else statement')
     openErrorModal();
   }
-  document.querySelector('.carousel').classList.add('hide');
-  document.querySelector('.selection-buttons').classList.add('hide');
-  $('#remove-button').removeClass('disabled');
-  $('#save-button').removeClass('disabled');
-  getAnimalData(animalData);
 }
 
 function getAnimalData(animalData){
   animalData.forEach(element => {
     updateCarouselCards(element);
   }); 
-    $('.loading').addClass('hide');
-    refreshCarousel();
-    $('.selection-buttons').removeClass('hide');
-    document.querySelector('.footer').classList.add('hide');
+  $('#remove-button').removeClass('disabled');
+  $('#save-button').removeClass('disabled');
+  addHideClass($('.loading'))
+  refreshCarousel();
+  removeHideClass($('.pet-tential-selection-buttons'));
+  addHideClass($('.pet-tential-footer'));
 }
+
+function removeHideClass(element) {
+  element.removeClass('hide');
+}
+
+function addHideClass(element) {
+  element.addClass('hide');
+}
+
 
 function main(){
   getDataFromStorage()
@@ -117,7 +129,7 @@ function main(){
     saveAnimalToLocalStorageAndRemove();
   });
   
- $('#furiends-button, #furiends-footer-button').click(function() {
+ $('#pet-tential-furiends-button, #furiends-footer-button').click(function() {
     console.log('Furiends List Clicked!');
     localStorage.setItem('pettentials', JSON.stringify(arrayOfData));
     window.location = 'furiends-list.html';

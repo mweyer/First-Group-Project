@@ -1,4 +1,6 @@
-
+body{
+    width: 100vw;
+}
 .carousel .carousel-item {
     visibility:visible;
     width: 340px !important;
@@ -41,15 +43,15 @@
       transform: rotate(359deg);
     }
 }
-.selection-buttons, .footer, .modal-footer{
+.pet-tential-selection-buttons, .pet-tential-footer, .modal-footer{
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
 }
 .btn{
-    margin: 2%;
+    margin: 1vw;
 }
-.footer{
+.pet-tential-footer{
     position:absolute;
     bottom:0;
     width:100%;
