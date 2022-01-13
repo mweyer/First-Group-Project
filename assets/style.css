@@ -13,3 +13,16 @@ label span {
 .card-title.pet-facts {
     font-size: 20px;
 }
+
+.furiends-cards {
+    
+    padding: 10px;
+}
+
+.furiends-list-title
+{
+    width:50%;
+    padding:5px;
+    align-content: center;
+    margin-left:25%;
+}
