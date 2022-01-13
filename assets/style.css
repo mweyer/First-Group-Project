@@ -2,14 +2,40 @@ nav {
     background-color: rgb(112, 200, 255);
 }
 
-label span {
-    color: white;
+#paw-img {
+    position: relative;
+    left: 10%;
+}
+
+#furiend-button {
+    position: relative;
+    margin-top: 15px;
+    right: 5%;
 }
 
 .spacer {
     visibility: hidden;
 }
 
+label span {
+    color: white;
+}
+
+div.row {
+    display: flex;
+}
+
 .card-title.pet-facts {
     font-size: 20px;
+}
+
+.pet-fact-card-large {
+    width: 22%;
+    /* height: 350px; */
+    margin: 180px 15px;
+}
+
+.pet-parameters-card-large {
+    margin-top: 25px;
+    width: 50%;
 }
