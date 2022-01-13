@@ -16,7 +16,7 @@ fetch('https://dog-api.matthewswar.com/api/facts')
     .then(response => response.json())
     .then(data => {
         var petfacts2 = document.querySelector('.cat-facts');
-        petfacts2.innerText = data[0].text; 
+        // petfacts2.innerText = data.text; 
         console.log(data)});
     
 
@@ -50,12 +50,11 @@ console.log(petFriendlyParameter);
 
 document.querySelector('#furiends-button').addEventListener('click',function() {
     console.log('Furiends List Clicked!');
-    // localStorage.setItem('pettentials', JSON.stringify(animalData));
   });
 
   document.querySelector('#fetch-button').addEventListener('click',function() {
     console.log('Fetch Button Clicked!');
-    // fetchFunction();
+    fetchFunction();
     // localStorage.setItem('pettentials', JSON.stringify(animalData));
   });
 

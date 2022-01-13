@@ -7,7 +7,7 @@ nav {
     left: 10%;
 }
 
-#furiend-button {
+#furiends-button {
     position: relative;
     margin-top: 15px;
     right: 5%;
@@ -29,13 +29,30 @@ div.row {
     font-size: 20px;
 }
 
-.pet-fact-card-large {
-    width: 22%;
-    /* height: 350px; */
-    margin: 180px 15px;
+<<<<<<< HEAD
+.furiends-cards {
+    
+    padding: 10px;
+}
+
+.furiends-list-title
+{
+    width:50%;
+    padding:5px;
+    align-content: center;
+    margin-left:25%;
+=======
+.pet-facts-column {
+    margin: 80px 15px;
+    width: 22%
 }
 
 .pet-parameters-card-large {
     margin-top: 25px;
     width: 50%;
+}
+
+label span {
+    color: black;
+>>>>>>> dev
 }
