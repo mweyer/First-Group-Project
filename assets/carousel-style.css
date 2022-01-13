@@ -1,12 +1,9 @@
-
-*{
-    visibility:visible;
-}
-
 body{
-   height: 100vh; 
+   height: 95vh; 
 }
+
 .carousel .carousel-item {
+    visibility:visible;
     width: 340px !important;
     background: none;
     border: none;
@@ -15,16 +12,13 @@ body{
 
 .carousel-slider{
     align-content: center;
-    height: 80vh;
+    height: 75vh;
 }
 
-.btn{
-    right: -40%;
-    margin: 2%;
-}
 
 button{
     cursor: pointer;
+    height: fit-content;
 }
 
 .header{
@@ -40,7 +34,39 @@ button{
     position: relative !important;
     right: 20px !important;
 }
+.loading-screen{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
 
 .loading{
-    transform: rotate(20deg);
+    border-radius: 100%;
+    align-content: center;
+    animation: rotation 5s infinite linear;
+}
+
+@keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+}
+.selection-buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn{
+    margin: 2%;
+}
+
+.hide{
+    visibility:hidden;
 }
