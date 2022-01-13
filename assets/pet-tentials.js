@@ -80,54 +80,28 @@ function saveAnimalToLocalStorageAndRemove() {
   console.log(arrayOfData);
   removeAnimalFromCarousel();
 }
-  // function getAnimalData(listOfIds){
-  //    var listOfPromises = listOfIds.map(element => {
-  //     return fetch(apiUrl+element, { 
-  //       headers: {
-  //       'Content-Type': 'application/vnd.api+json',
-  //       'Authorization': 'D5eT1vpr',
-  //       // Above: our API key
-  //     }
-  //   })
-  //     .then(function (response) {
-  //       return response.json();
-  //     })
-  //     .then( function(responseBody){
-  //       updateCarouselCards(responseBody);
-  //     })
-  //   });
-  //   Promise.allSettled(listOfPromises).then(function(){
-  //     console.log('Promises settled')
-  //     $('.loading').addClass('hide');
-  //     refreshCarousel();
-  //     $('.selection-buttons').removeClass('hide');
-  //     document.querySelector('.footer').classList.add('hide');
-
-  //   });
-  // }
-
-  function getDataFromStorage() {
-    $('.carousel').addClass('hide');
-    var animalData = JSON.parse(localStorage.getItem('listOfIds'));
-    if (!animalData) {
-      openErrorModal();
-    }
-    document.querySelector('.carousel').classList.add('hide');
-    document.querySelector('.selection-buttons').classList.add('hide');
-    $('#remove-button').removeClass('disabled');
-    $('#save-button').removeClass('disabled');
-    getAnimalData(animalData)
+function getDataFromStorage() {
+  $('.carousel').addClass('hide');
+  var animalData = JSON.parse(localStorage.getItem('pettentials'));
+  if (!animalData) {
+    openErrorModal();
   }
+  document.querySelector('.carousel').classList.add('hide');
+  document.querySelector('.selection-buttons').classList.add('hide');
+  $('#remove-button').removeClass('disabled');
+  $('#save-button').removeClass('disabled');
+  getAnimalData(animalData);
+}
 
-  function getAnimalData(animalData){
-    animalData.forEach(element => {
-      updateCarouselCards(element);
-    }); 
-     $('.loading').addClass('hide');
-     refreshCarousel();
-     $('.selection-buttons').removeClass('hide');
-     document.querySelector('.footer').classList.add('hide');
- }
+function getAnimalData(animalData){
+  animalData.forEach(element => {
+    updateCarouselCards(element);
+  }); 
+    $('.loading').addClass('hide');
+    refreshCarousel();
+    $('.selection-buttons').removeClass('hide');
+    document.querySelector('.footer').classList.add('hide');
+}
 
 function main(){
   getDataFromStorage()
