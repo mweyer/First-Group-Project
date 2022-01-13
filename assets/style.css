@@ -2,18 +2,34 @@ nav {
     background-color: rgb(112, 200, 255);
 }
 
-label span {
-    color: white;
+#paw-img {
+    position: relative;
+    left: 10%;
+}
+
+#furiends-button {
+    position: relative;
+    margin-top: 15px;
+    right: 5%;
 }
 
 .spacer {
     visibility: hidden;
 }
 
+label span {
+    color: white;
+}
+
+div.row {
+    display: flex;
+}
+
 .card-title.pet-facts {
     font-size: 20px;
 }
 
+<<<<<<< HEAD
 .furiends-cards {
     
     padding: 10px;
@@ -25,4 +41,18 @@ label span {
     padding:5px;
     align-content: center;
     margin-left:25%;
+=======
+.pet-facts-column {
+    margin: 80px 15px;
+    width: 22%
+}
+
+.pet-parameters-card-large {
+    margin-top: 25px;
+    width: 50%;
+}
+
+label span {
+    color: black;
+>>>>>>> dev
 }
