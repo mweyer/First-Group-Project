@@ -29,7 +29,7 @@ div.row {
     font-size: 20px;
 }
 
-.furiends-cards {
+.furiends-cards {    
     padding: 10px;
 }
 
@@ -46,7 +46,7 @@ div.row {
     width: 22%
 }
 
-.pet-parameters-card-large {
+.pet-parameters-card {
     margin-top: 25px;
     width: 50%;
 }
@@ -54,3 +54,24 @@ div.row {
 label span {
     color: black;
 }
+
+@media screen and (max-width: 600px) {
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .pet-facts-column {
+        margin: 0 0;
+        width: 100%;
+    }
+
+    .pet-parameters-card {
+        margin: 0 0;
+        width: 100%;
+    }
+
+    .dog-facts-card, .cat-facts-card {
+        margin: 0 0;
+    }
+  }

@@ -24,6 +24,7 @@ var needPictures;
 var apiUrl;
 var typeParameter;
 var genderParameter;
+var breedParameter;
 var sizeParameter;
 var ageParameter;
 var coatParameter;
@@ -36,8 +37,8 @@ function fetchData () {
     headers: {
             'Content-Type': 'application/vnd.api+json',
             'Authorization': 'D5eT1vpr',
-            // Above: our API key
-      }})
+          }
+    })
       .then(function (response) {
           return response.json();
       })
@@ -49,6 +50,7 @@ function fetchData () {
 function fetchFunction() {
   typeParameter = document.getElementById('type-parameter').value;
   genderParameter = document.getElementById('gender-parameter').value;
+  breedParameter = document.getElementById('breed-parameter').value;
   sizeParameter = document.getElementById('size-parameter').value;
   ageParameter = document.getElementById('age-parameter').value;
   coatParameter = document.getElementById('coat-parameter').value;
@@ -56,14 +58,15 @@ function fetchFunction() {
   shotsParameter = document.getElementById('shots-parameter').checked;
   petFriendlyParameter = document.getElementById('pet-friendly-parameter').checked;
   // For debugging: 
-  // console.log(typeParameter);
-  // console.log(genderParameter);
-  // console.log(sizeParameter);
-  // console.log(ageParameter);
-  // console.log(coatParameter);
-  // console.log(picturesParameter);
-  // console.log(shotsParameter);
-  // console.log(petFriendlyParameter);
+  console.log(typeParameter);
+  console.log(genderParameter);
+  console.log(breedParameter);
+  console.log(sizeParameter);
+  console.log(ageParameter);
+  console.log(coatParameter);
+  console.log(picturesParameter);
+  console.log(shotsParameter);
+  console.log(petFriendlyParameter);
   if (typeParameter == 1) {
     catsOrDogs = "cats";
     console.log(catsOrDogs);

@@ -24,7 +24,7 @@
         <div class="row">
           <!-- these are both pet facts cards -->
           <div class="pet-facts-column">
-            <div class="cat-fact-card-large">
+            <div class="cat-facts-card">
                 <div class="card horizontal">
                   <div class="card-content">
                     <span class="card-title">Cat Facts:</span>
@@ -32,7 +32,7 @@
                   </div>
                 </div>
             </div>
-            <div class="dog-fact-card-large">
+            <div class="dog-facts-card">
               <div class="card horizontal">
                 <div class="card-content">
                   <span class="card-title">Dog Facts:</span>
@@ -42,7 +42,7 @@
             </div>
           </div>
           <!-- this is the pet parameters card -->
-          <div class="pet-parameters-card-large">
+          <div class="pet-parameters-card">
             <div class="card">
               <div class="card-content">
                 <!-- these are the materialize select inputs -->
@@ -62,7 +62,15 @@
                 </select>
                 <br>
                 <p>What type of breed?</p>
-                <input type="text" id="size-parameter">
+                <input type="text" id="breed-parameter">
+                <br>
+                <p>What size?</p>
+                <select class="input-field" id="size-parameter">
+                  <option value="" disabled selected>Small, Medium, or Large</option>
+                  <option value="1">Small</option>
+                  <option value="2">Medium</option>
+                  <option value="3">Large</option>
+                </select>
                 <br>
                 <p>What age?</p>
                 <select class="input-field" id="age-parameter">
