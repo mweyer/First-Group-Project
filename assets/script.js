@@ -5,18 +5,21 @@ $(document).ready(function() {
 });
 
 fetch('https://dog-api.matthewswar.com/api/facts')
-    .then(response => response.json())
-    .then(data => {
-        var petfacts1 = document.querySelector('.dog-facts')
-        petfacts1.innerText = data.facts 
-        console.log(data)});
+.then(response => response.json())
+.then(data => {
+    var petfacts1 = document.querySelector('.dog-facts')
+    petfacts1.innerText = data.facts 
+    console.log(data)});
 
-fetch('https://cat-fact.herokuapp.com/facts')
-    .then(response => response.json())
-    .then(data => {
-        var petfacts2 = document.querySelector('.cat-facts');
-        // petfacts2.innerText = data.text; 
-        console.log(data)});
+ fetch('https://cat-fact.herokuapp.com/facts')
+.then(response => response.json())
+.then(data => {
+
+    var item = data[Math.floor(Math.random()*data.length)]
+    var petfacts2 = document.querySelector('.cat-facts')
+    petfacts2.innerText = item.text
+    console.log(item)
+});
     
 var catsOrDogs;
 var needPictures;        
