@@ -81,6 +81,7 @@ function saveAnimalToLocalStorageAndRemove() {
 function getDataFromStorage() {
 
   var animalData = JSON.parse(localStorage.getItem('petTentialPals')) || [];
+  console.log(animalData);
   animalData = animalData['data'];
   if (Array.isArray(animalData) && animalData.length > 0) {
     console.log('In if statement')

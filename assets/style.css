@@ -64,6 +64,35 @@ label span {
     color: black;
 }
 
+.loading-screen{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.loading{
+    border-radius: 100%;
+    align-content: center;
+    animation: rotation 1.5s infinite;
+}
+
+@keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+}
+
+.hide{
+    visibility:hidden;
+}
+
 @media screen and (max-width: 600px) {
     .row {
         display: flex;

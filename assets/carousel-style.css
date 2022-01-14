@@ -22,30 +22,7 @@ nav {
     position: relative !important;
     right: 20px !important;
 }
-.loading-screen{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-}
 
-.loading{
-    border-radius: 100%;
-    align-content: center;
-    animation: rotation 5s infinite linear;
-}
-
-@keyframes rotation {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(359deg);
-    }
-}
 .pet-tential-selection-buttons, .pet-tential-footer, .modal-footer{
     display: flex;
     justify-content: space-evenly;
@@ -61,7 +38,4 @@ nav {
 }
 .modal-footer{
     justify-content: space-evenly;
-}
-.hide{
-    visibility:hidden;
 }
