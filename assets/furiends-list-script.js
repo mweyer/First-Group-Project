@@ -68,10 +68,12 @@ var resultContainer = document.getElementById("results")
 //TODO: Once the local storage is set, enable this to populate the page
 function populatePage()
 {
-  for (var i = 0; i < 5; i++)
-  {
-  // for (var i = 0; i < savedAnimalData.length; i++)
+  var savedAnimalData = JSON.parse(localStorage.getItem('pettentials'));
+  console.log(savedAnimalData)
+  // for (var i = 0; i < 50; i++)
   // {
+  for (var i = 0; i < savedAnimalData.length; i++)
+  {
        var resultPetList = document.createElement('ul');
        var resultPetImage = document.createElement('img');
        var resultPetName = document.createElement('p');
@@ -90,15 +92,15 @@ function populatePage()
 
  // TODO: Need to find other attributes to populate the remaining sections
  // Adding the text content from the collected results so they can be later appended to the results html page
-       resultPetName.textContent = "Name: ";
+       resultPetName.textContent = "Name: " + savedAnimalData[i].attributes.name;
        resultPetType.textContent = "Type: ";
-       resultPetBreed.textContent = "Breed: ";
-       resultPetAge.textContent = "Age: ";
-       resultPetCoatLength.textContent = "Coat Length: ";
+       resultPetBreed.textContent = "Breed: " + savedAnimalData[i].attributes.breedPrimary;
+       resultPetAge.textContent = "Age: " + savedAnimalData[i].attributes.ageGroup;
+       resultPetCoatLength.textContent = "Coat Length: " + savedAnimalData[i].attributes.coatLength;
        adoptButton.textContent = "Adopt Me";
 
 
-       resultPetImage.src = "https://i.imgur.com/MU2dD8E.jpeg";
+       resultPetImage.src = savedAnimalData[i].attributes.pictureThumbnailUrl;
        resultPetImage.width = "300";
        resultPetImage.className = "pet-image z-depth-2"
 
@@ -122,19 +124,11 @@ function populatePage()
        resultPetList.append(resultPetCoatLength);
        resultPetList.append(adoptButton);
 
-
   }
 }
 
-function main(){
-  var savedAnimalData = JSON.parse(localStorage.getItem('pettentials'));
 
-  console.log(savedAnimalData);
-  populatePage();
-
-}
-
-main();
+populatePage();
 
 
 
