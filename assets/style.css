@@ -1,7 +1,3 @@
-nav {
-    background-color: rgb(112, 200, 255);
-}
-
 #paw-img {
     position: relative;
     left: 10%;
@@ -33,8 +29,7 @@ div.row {
     padding: 10px;
 }
 
-.furiends-list-title
-{
+.furiends-list-title {
     width:50%;
     padding:5px;
     align-content: center;
@@ -48,7 +43,11 @@ div.row {
 
 .pet-parameters-card {
     margin-top: 25px;
-    width: 50%;
+    width: 40%;
+}
+
+.pet-image-card {
+    margin-top: 100px;
 }
 
 .furiends-list-title
