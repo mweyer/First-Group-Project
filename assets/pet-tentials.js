@@ -6,8 +6,6 @@ var curSlide = 0;
 var objOfAnimals = {}
 var arrayOfData = [];
 function updateCarouselCards(animalData) {
-  console.log(animalData)
-    animalData = animalData["data"][0]
     var carouselItem = document.createElement('button');
       carouselItem.classList.add("carousel-item");
       carouselItem.classList.add("black-text");
@@ -83,7 +81,7 @@ function saveAnimalToLocalStorageAndRemove() {
 function getDataFromStorage() {
   addHideClass($('.carousel'));
   addHideClass($('.pet-tential-selection-buttons'));
-  var animalData = JSON.parse(localStorage.getItem('pettentials')) || [];
+  var animalData = JSON.parse(localStorage.getItem('found-pettentials'));
   if (Array.isArray(animalData) && animalData.length > 0) {
     console.log('In if statement')
     getAnimalData(animalData);
@@ -95,6 +93,7 @@ function getDataFromStorage() {
 }
 
 function getAnimalData(animalData){
+  animalData = animalData[0]['data'];
   animalData.forEach(element => {
     updateCarouselCards(element);
   }); 
