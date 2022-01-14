@@ -1,4 +1,4 @@
-// Local storage for first page results is petCandidates
+// Local storage for first page results is petTentialPals
 
 $(document).ready(function() {
     $('select').formSelect();
@@ -9,6 +9,7 @@ fetch('https://dog-api.matthewswar.com/api/facts')
 .then(data => {
     var petfacts1 = document.querySelector('.dog-facts')
     petfacts1.innerText = data.facts 
+    console.log("Dog facts response: ")
     console.log(data)});
 
  fetch('https://cat-fact.herokuapp.com/facts')
@@ -18,6 +19,7 @@ fetch('https://dog-api.matthewswar.com/api/facts')
     var item = data[Math.floor(Math.random()*data.length)]
     var petfacts2 = document.querySelector('.cat-facts')
     petfacts2.innerText = item.text
+    console.log("Cat facts response: ")
     console.log(item)
 });
     
@@ -46,6 +48,7 @@ function fetchFunction() {
   shotsParameter = document.getElementById('shots-parameter').checked;
   petFriendlyParameter = document.getElementById('pet-friendly-parameter').checked;
   // For debugging: 
+  console.log("Parameter values below:")
   console.log(typeParameter);
   console.log(genderParameter);
   console.log(breedParameter);
@@ -73,6 +76,7 @@ function fetchFunction() {
     console.log(picturesParameter);
   }
   apiUrl = "https://api.rescuegroups.org/v5/public/animals/search/available/" + catsOrDogs + needPictures;
+  console.log("How API url looks after parameters: ");
   console.log(apiUrl);
   fetchData();
 }
@@ -101,9 +105,11 @@ function fetchData () {
           return response.json();
       })
       .then(function (data) {
+          console.log("Curent API response: ");
           console.log(data);
-          localStorage.setItem("petCandidates", JSON.stringify(data));
-          console.log(JSON.parse(localStorage.getItem("petCandidates")));
+          localStorage.setItem("petTentialPals", JSON.stringify(data));
+          console.log("The API response pulled from localStorage: ");
+          console.log(JSON.parse(localStorage.getItem("petTentialPals")));
       })
 }
 
