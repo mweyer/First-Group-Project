@@ -6,8 +6,6 @@ var curSlide = 0;
 var objOfAnimals = {}
 var arrayOfData = [];
 function updateCarouselCards(animalData) {
-  console.log(animalData)
-    animalData = animalData["data"][0]
     var carouselItem = document.createElement('button');
       carouselItem.classList.add("carousel-item");
       carouselItem.classList.add("black-text");
@@ -81,9 +79,9 @@ function saveAnimalToLocalStorageAndRemove() {
   removeAnimalFromCarousel();
 }
 function getDataFromStorage() {
-  addHideClass($('.carousel'));
-  addHideClass($('.pet-tential-selection-buttons'));
-  var animalData = JSON.parse(localStorage.getItem('pettentials')) || [];
+
+  var animalData = JSON.parse(localStorage.getItem('petTentialPals')) || [];
+  animalData = animalData['data'];
   if (Array.isArray(animalData) && animalData.length > 0) {
     console.log('In if statement')
     getAnimalData(animalData);
@@ -116,7 +114,11 @@ function addHideClass(element) {
 
 
 function main(){
-  getDataFromStorage()
+  addHideClass($('.carousel'));
+  addHideClass($('.pet-tential-selection-buttons'));
+  setTimeout(()=>{
+    getDataFromStorage();
+  }, 2500)
 }
 
   document.querySelector('#remove-button').addEventListener('click',function() {
@@ -129,11 +131,10 @@ function main(){
     saveAnimalToLocalStorageAndRemove();
   });
   
- $('#pet-tential-furiends-button, #furiends-footer-button').click(function() {
+ document.querySelector('.fetch').addEventListener('click', function() {
     console.log('Furiends List Clicked!');
     localStorage.setItem('pettentials', JSON.stringify(arrayOfData));
     window.location = 'furiends-list.html';
-
   });
 
   $('#restart-button, #restart-footer-button').click(function() {
