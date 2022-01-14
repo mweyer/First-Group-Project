@@ -1,5 +1,4 @@
-// the styling stays the same even without this code
-// but material documentation says to include it
+// Local storage for first page results is petCandidates
 
 $(document).ready(function() {
     $('select').formSelect();
@@ -31,21 +30,7 @@ var coatParameter;
 var picturesParameter;
 var shotsParameter;
 var petFriendlyParameter;
-
-function fetchData () {
-  fetch(apiUrl, {
-    headers: {
-            'Content-Type': 'application/vnd.api+json',
-            'Authorization': 'D5eT1vpr',
-          }
-    })
-      .then(function (response) {
-          return response.json();
-      })
-      .then(function (data) {
-          console.log(data);
-      })
-}
+// var arrayOfData = [];
 
 function fetchFunction() {
   typeParameter = document.getElementById('type-parameter').value;
@@ -87,6 +72,36 @@ function fetchFunction() {
   apiUrl = "https://api.rescuegroups.org/v5/public/animals/search/available/" + catsOrDogs + needPictures;
   console.log(apiUrl);
   fetchData();
+}
+
+function fetchData () {
+  // var dataFilter = JSON.stringify({
+  //     “data”: {
+  //                 “filters”: [
+  //                     {
+  //                         “fieldName”: “animals.breedPrimary”,
+  //                         “operation”: “contains”,
+  //                         “criteria”: “Staffordshire”
+  //                     }
+  //                 ]
+  //             }
+  //     });  
+  fetch(apiUrl, {
+    // method: 'POST',
+    headers: {
+            'Content-Type': 'application/vnd.api+json',
+            'Authorization': 'D5eT1vpr',
+          }
+    // body: dataFilter
+    })
+      .then(function (response) {
+          return response.json();
+      })
+      .then(function (data) {
+          console.log(data);
+          localStorage.setItem("petCandidates", JSON.stringify(data));
+          console.log(JSON.parse(localStorage.getItem("petCandidates")));
+      })
 }
 
 document.querySelector('#furiends-button').addEventListener('click',function() {
