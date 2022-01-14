@@ -29,9 +29,7 @@ div.row {
     font-size: 20px;
 }
 
-<<<<<<< HEAD
 .furiends-cards {
-    
     padding: 10px;
 }
 
@@ -41,7 +39,8 @@ div.row {
     padding:5px;
     align-content: center;
     margin-left:25%;
-=======
+}
+
 .pet-facts-column {
     margin: 80px 15px;
     width: 22%
@@ -54,5 +53,4 @@ div.row {
 
 label span {
     color: black;
->>>>>>> dev
 }
