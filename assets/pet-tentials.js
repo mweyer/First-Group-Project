@@ -80,7 +80,8 @@ function saveAnimalToLocalStorageAndRemove() {
 }
 function getDataFromStorage() {
 
-  var animalData = JSON.parse(localStorage.getItem('found-pettentials'));
+  var animalData = JSON.parse(localStorage.getItem('petTentialPals')) || [];
+  animalData = animalData['data'];
   if (Array.isArray(animalData) && animalData.length > 0) {
     console.log('In if statement')
     getAnimalData(animalData);
@@ -92,7 +93,6 @@ function getDataFromStorage() {
 }
 
 function getAnimalData(animalData){
-  animalData = animalData[0]['data'];
   animalData.forEach(element => {
     updateCarouselCards(element);
   }); 
