@@ -79,8 +79,7 @@ function saveAnimalToLocalStorageAndRemove() {
   removeAnimalFromCarousel();
 }
 function getDataFromStorage() {
-  addHideClass($('.carousel'));
-  addHideClass($('.pet-tential-selection-buttons'));
+
   var animalData = JSON.parse(localStorage.getItem('found-pettentials'));
   if (Array.isArray(animalData) && animalData.length > 0) {
     console.log('In if statement')
@@ -115,7 +114,11 @@ function addHideClass(element) {
 
 
 function main(){
-  getDataFromStorage()
+  addHideClass($('.carousel'));
+  addHideClass($('.pet-tential-selection-buttons'));
+  setTimeout(()=>{
+    getDataFromStorage();
+  }, 2500)
 }
 
   document.querySelector('#remove-button').addEventListener('click',function() {
@@ -128,11 +131,10 @@ function main(){
     saveAnimalToLocalStorageAndRemove();
   });
   
- $('#pet-tential-furiends-button, #furiends-footer-button').click(function() {
+ document.querySelector('.fetch').addEventListener('click', function() {
     console.log('Furiends List Clicked!');
     localStorage.setItem('pettentials', JSON.stringify(arrayOfData));
     window.location = 'furiends-list.html';
-
   });
 
   $('#restart-button, #restart-footer-button').click(function() {
