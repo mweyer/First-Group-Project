@@ -83,24 +83,40 @@ function fetchFunction() {
 
 function fetchData () {
   // var dataFilter = JSON.stringify({
-  //     “data”: {
-  //                 “filters”: [
-  //                     {
-  //                         “fieldName”: “animals.breedPrimary”,
-  //                         “operation”: “contains”,
-  //                         “criteria”: “Staffordshire”
-  //                     }
-  //                 ]
-  //             }
-  //     });  
+  //   "data": {
+  //     "filters": [
+  //       {
+  //         "fieldName": "animals.breedPrimaryId",
+  //         "operation": "contains",
+  //         "criteria": "Staffordshire"
+  //       },
+  //       {
+  //         "fieldName": "animals.sizeGroup",
+  //         "operation": "contains",
+  //         "criteria": "Small"
+  //       }
+  //     ],
+  //   }
+  // });
+
+  // var myHeaders = {
+  //           'Content-Type': 'application/vnd.api+json',
+  //           'Authorization': 'D5eT1vpr'
+  //         } 
+
+  // var requestOptions = {
+  //   method: 'POST',
+  //   headers: myHeaders,
+  //   body: dataFilter
+  // };
+  
   fetch(apiUrl, {
-    // method: 'POST',
     headers: {
-            'Content-Type': 'application/vnd.api+json',
-            'Authorization': 'D5eT1vpr',
-          }
-    // body: dataFilter
-    })
+      'Content-Type': 'application/vnd.api+json',
+      'Authorization': 'D5eT1vpr',
+      // Above: our API key
+      }
+  })
       .then(function (response) {
           return response.json();
       })
@@ -120,7 +136,5 @@ document.querySelector('#furiends-button').addEventListener('click',function() {
   document.querySelector('#fetch-button').addEventListener('click',function() {
     console.log('Fetch Button Clicked!');
     fetchFunction();
-    // localStorage.setItem('pettentials', JSON.stringify(animalData));
+    setTimeout(function () {window.location = "./pet-tential-results.html"}, 2500);
   });
-
-// add fetch 
