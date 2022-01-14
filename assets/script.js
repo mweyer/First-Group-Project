@@ -1,5 +1,4 @@
-// the styling stays the same even without this code
-// but material documentation says to include it
+// Local storage for first page results is petTentialPals
 
 $(document).ready(function() {
     $('select').formSelect();
@@ -10,6 +9,7 @@ fetch('https://dog-api.matthewswar.com/api/facts')
 .then(data => {
     var petfacts1 = document.querySelector('.dog-facts')
     petfacts1.innerText = data.facts 
+    console.log("Dog facts response: ")
     console.log(data)});
 
  fetch('https://cat-fact.herokuapp.com/facts')
@@ -19,6 +19,7 @@ fetch('https://dog-api.matthewswar.com/api/facts')
     var item = data[Math.floor(Math.random()*data.length)]
     var petfacts2 = document.querySelector('.cat-facts')
     petfacts2.innerText = item.text
+    console.log("Cat facts response: ")
     console.log(item)
 });
     
@@ -34,21 +35,7 @@ var coatParameter;
 var picturesParameter;
 var shotsParameter;
 var petFriendlyParameter;
-
-function fetchData () {
-  fetch(apiUrl, {
-    headers: {
-            'Content-Type': 'application/vnd.api+json',
-            'Authorization': 'D5eT1vpr',
-          }
-    })
-      .then(function (response) {
-          return response.json();
-      })
-      .then(function (data) {
-          console.log(data);
-      })
-}
+// var arrayOfData = [];
 
 function fetchFunction() {
   typeParameter = document.getElementById('type-parameter').value;
@@ -61,6 +48,7 @@ function fetchFunction() {
   shotsParameter = document.getElementById('shots-parameter').checked;
   petFriendlyParameter = document.getElementById('pet-friendly-parameter').checked;
   // For debugging: 
+  console.log("Parameter values below:")
   console.log(typeParameter);
   console.log(genderParameter);
   console.log(breedParameter);
@@ -88,8 +76,41 @@ function fetchFunction() {
     console.log(picturesParameter);
   }
   apiUrl = "https://api.rescuegroups.org/v5/public/animals/search/available/" + catsOrDogs + needPictures;
+  console.log("How API url looks after parameters: ");
   console.log(apiUrl);
   fetchData();
+}
+
+function fetchData () {
+  // var dataFilter = JSON.stringify({
+  //     “data”: {
+  //                 “filters”: [
+  //                     {
+  //                         “fieldName”: “animals.breedPrimary”,
+  //                         “operation”: “contains”,
+  //                         “criteria”: “Staffordshire”
+  //                     }
+  //                 ]
+  //             }
+  //     });  
+  fetch(apiUrl, {
+    // method: 'POST',
+    headers: {
+            'Content-Type': 'application/vnd.api+json',
+            'Authorization': 'D5eT1vpr',
+          }
+    // body: dataFilter
+    })
+      .then(function (response) {
+          return response.json();
+      })
+      .then(function (data) {
+          console.log("Curent API response: ");
+          console.log(data);
+          localStorage.setItem("petTentialPals", JSON.stringify(data));
+          console.log("The API response pulled from localStorage: ");
+          console.log(JSON.parse(localStorage.getItem("petTentialPals")));
+      })
 }
 
 document.querySelector('#furiends-button').addEventListener('click',function() {
