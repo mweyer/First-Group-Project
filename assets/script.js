@@ -135,6 +135,9 @@ document.querySelector('#furiends-button').addEventListener('click',function() {
 
   document.querySelector('#fetch-button').addEventListener('click',function() {
     console.log('Fetch Button Clicked!');
+
     fetchFunction();
+    $('.loading-screen').removeClass('hide');
+    $('.row').addClass('hide');
     setTimeout(function () {window.location = "./pet-tential-results.html"}, 2500);
   });
