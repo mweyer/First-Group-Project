@@ -1,7 +1,3 @@
-nav {
-    background-color: rgb(112, 200, 255);
-}
-
 #paw-img {
     position: relative;
     left: 10%;
@@ -29,18 +25,20 @@ div.row {
     font-size: 20px;
 }
 
+<<<<<<< HEAD
+=======
 .furiends-cards {    
     padding: 10px;
 }
 
-.furiends-list-title
-{
+.furiends-list-title {
     width:50%;
     padding:5px;
     align-content: center;
     margin-left:25%;
 }
 
+>>>>>>> dev
 .pet-facts-column {
     margin: 80px 15px;
     width: 22%
@@ -48,11 +46,28 @@ div.row {
 
 .pet-parameters-card {
     margin-top: 25px;
-    width: 50%;
+    width: 40%;
+}
+
+.pet-image-card {
+    margin-top: 100px;
+}
+
+.furiends-list-title
+{
+    width:50%;
+    margin-left: 25%;
+}
+.furiends-cards
+{
+    padding: 5px;
 }
 
 label span {
     color: black;
+<<<<<<< HEAD
+}
+=======
 }
 
 @media screen and (max-width: 600px) {
@@ -75,3 +90,4 @@ label span {
         margin: 0 0;
     }
   }
+>>>>>>> dev
