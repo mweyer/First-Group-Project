@@ -56,61 +56,93 @@
           <span class="card-title center">Pet Parameters</span>
           <p>What kind of pet are you looking for?</p>
           <select class="input-field" id="type-parameter">
-            <option value="" disabled selected>Cat or Dog</option>
+            <option value="" disabled selected>Please choose an option</option>
             <option value="1">Cat</option>
             <option value="2">Dog</option>
+            <option value="3">Both</option>
           </select>
           <br>
-          <p>Which gender?</p>
+          <p>Any specific gender?</p>
           <select class="input-field" id="gender-parameter">
             <option value="" disabled selected>Male or Female</option>
             <option value="1">Male</option>
             <option value="2">Female</option>
+            <option value="3">Both</option>
           </select>
           <br>
-          <p>What type of breed?</p>
+          <p>Any specific breeds?</p>
           <input type="text" id="breed-parameter">
           <br>
-          <p>What size?</p>
-          <select class="input-field" id="size-parameter">
-            <option value="" disabled selected>Small, Medium, or Large</option>
-            <option value="1">Small</option>
-            <option value="2">Medium</option>
-            <option value="3">Large</option>
-          </select>
-          <br>
-          <p>What age?</p>
-          <select class="input-field" id="age-parameter">
-            <option value="" disabled selected>Young, Adult, or Senior</option>
-            <option value="1">Young</option>
-            <option value="2">Adult</option>
-            <option value="3">Senior</option>
-          </select>
-          <br>
-          <p>How about the coat length of your pet?</p>
-          <select class="input-field" id="coat-parameter">
-            <option value="" disabled selected>Short, Medium, or Long</option>
-            <option value="1">Short</option>
-            <option value="2">Medium</option>
-            <option value="3">Long</option>
-          </select>
-          <br>
-          <!-- these are the checkboxes -->
-          <label>
-            <input type="checkbox" id="pictures-parameter"></input>
-            <span>Pictures are required</span>
-          </label>
-          <br>
-          <label>
-            <input type="checkbox" id="shots-parameter"></input>
-            <span>Has all of their shots</span>
-          </label>
-          <br>
-          <label>
-            <input type="checkbox" id="pet-friendly-parameter"></input>
-            <span>Okay around other pets</span>
-          </label>
-          <br>
+          <p>Any specific sizes?</p>
+          <table>
+            <tr>
+              <td> 
+                <label>
+                <input type="checkbox"></input>
+                <span>Small</span>
+                </label>
+              </td>
+              <td>
+                <label>
+                  <input type="checkbox"></input>
+                  <span>Medium</span>
+                </label>
+              </td>
+              <td>
+                <label>
+                  <input type="checkbox"></input>
+                  <span>Large</span>
+                </label>
+              </td>
+            </tr>
+          </table>
+          <p>Any specific age groups?</p>
+          <table>
+            <tr>
+              <td> 
+                <label>
+                <input type="checkbox"></input>
+                <span>Infant</span>
+                </label>
+              </td>
+              <td>
+                <label>
+                  <input type="checkbox"></input>
+                  <span>Young</span>
+                </label>
+              </td>
+              <td>
+                <label>
+                  <input type="checkbox"></input>
+                  <span>Adult</span>
+                </label>
+              </td>
+            </tr>
+          </table>
+          <p>Any specific coat lengths?</p>
+          <table>
+            <tr>
+              <td> 
+                <label>
+                <input type="checkbox"></input>
+                <span>Short</span>
+                </label>
+              </td>
+              <td>
+                <label>
+                  <input type="checkbox"></input>
+                  <span>Medium</span>
+                </label>
+              </td>
+              <td>
+                <label>
+                  <input type="checkbox"></input>
+                  <span>Long</span>
+                </label>
+              </td>
+            </tr>
+          </table>
+
         </div>
         <div class="card-action center">
           <a class="waves-effect waves-light btn" id="fetch-button" href="#">Fetch</a>

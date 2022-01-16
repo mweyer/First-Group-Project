@@ -36,6 +36,15 @@ div.row {
     margin-left:25%;
 }
 
+label span {
+    color: black;
+    margin-left: 5px;
+}
+
+table tr td {
+    text-align: left;
+}
+
 .pet-facts-column {
     margin: 80px 15px;
     width: 22%
@@ -50,6 +59,11 @@ div.row {
     margin-top: 100px;
 }
 
+.pet-image-card img {
+    width: 400px;
+    height: 400px;
+}
+
 .furiends-list-title
 {
     width:50%;
@@ -60,11 +74,8 @@ div.row {
     padding: 5px;
 }
 
-label span {
-    color: black;
-}
-
-.loading-screen{
+.loading-screen
+{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -74,7 +85,8 @@ label span {
     transform: translate(-50%, -50%);
 }
 
-.loading{
+.loading
+{
     border-radius: 100%;
     align-content: center;
     animation: rotation 1.5s infinite;
