@@ -4,6 +4,9 @@ $(document).ready(function() {
     $('select').formSelect();
 });
 
+var filterArray=[];
+
+
 fetch('https://dog-api.matthewswar.com/api/facts')
 .then(response => response.json())
 .then(data => {
@@ -22,100 +25,32 @@ fetch('https://dog-api.matthewswar.com/api/facts')
     console.log("Cat facts response: ")
     console.log(item)
 });
-    
-var catsOrDogs;
-var needPictures;        
-var apiUrl;
-var typeParameter;
-var genderParameter;
-var breedParameter;
-var sizeParameter;
-var ageParameter;
-var coatParameter;
-var picturesParameter;
-var shotsParameter;
-var petFriendlyParameter;
-// var arrayOfData = [];
 
 function fetchFunction() {
-  typeParameter = document.getElementById('type-parameter').value;
-  genderParameter = document.getElementById('gender-parameter').value;
-  breedParameter = document.getElementById('breed-parameter').value;
-  sizeParameter = document.getElementById('size-parameter').value;
-  ageParameter = document.getElementById('age-parameter').value;
-  coatParameter = document.getElementById('coat-parameter').value;
-  picturesParameter = document.getElementById('pictures-parameter').checked;
-  shotsParameter = document.getElementById('shots-parameter').checked;
-  petFriendlyParameter = document.getElementById('pet-friendly-parameter').checked;
-  // For debugging: 
-  console.log("Parameter values below:")
-  console.log(typeParameter);
-  console.log(genderParameter);
-  console.log(breedParameter);
-  console.log(sizeParameter);
-  console.log(ageParameter);
-  console.log(coatParameter);
-  console.log(picturesParameter);
-  console.log(shotsParameter);
-  console.log(petFriendlyParameter);
-  if (typeParameter == 1) {
-    catsOrDogs = "cats";
-    console.log(catsOrDogs);
-  } else if (typeParameter == 2) {
-    catsOrDogs = "dogs";
-    console.log(catsOrDogs);
-  } else {
-    catsOrDogs = "";
-    console.log("no pet type chosen")
-  }
-  if (picturesParameter) {
-    needPictures = "/&include=pictures";
-    console.log(picturesParameter);
-  } else if (!picturesParameter) {
-    needPictures = "";
-    console.log(picturesParameter);
-  }
-  apiUrl = "https://api.rescuegroups.org/v5/public/animals/search/available/" + catsOrDogs + needPictures;
+  getFields();
   console.log("How API url looks after parameters: ");
-  console.log(apiUrl);
-  fetchData();
+  fetchData(filterArray);
 }
+function fetchData (filters) {
+  var apiUrl = "https://api.rescuegroups.org/v5/public/animals/search/available/&include=pictures";
 
-function fetchData () {
-  // var dataFilter = JSON.stringify({
-  //   "data": {
-  //     "filters": [
-  //       {
-  //         "fieldName": "animals.breedPrimaryId",
-  //         "operation": "contains",
-  //         "criteria": "Staffordshire"
-  //       },
-  //       {
-  //         "fieldName": "animals.sizeGroup",
-  //         "operation": "contains",
-  //         "criteria": "Small"
-  //       }
-  //     ],
-  //   }
-  // });
-
-  // var myHeaders = {
-  //           'Content-Type': 'application/vnd.api+json',
-  //           'Authorization': 'D5eT1vpr'
-  //         } 
-
-  // var requestOptions = {
-  //   method: 'POST',
-  //   headers: myHeaders,
-  //   body: dataFilter
-  // };
-  
+  console.log(filters)
+  var body = JSON.stringify({
+    "data": {
+      "filterRadius": getLocation(),
+      "filters": filters
+    }
+  });
+  console.log('Body ');
+  console.log(body);
   fetch(apiUrl, {
+    method: 'POST',
     headers: {
       'Content-Type': 'application/vnd.api+json',
       'Authorization': 'D5eT1vpr',
       // Above: our API key
-      }
+      },
+      body: body
   })
       .then(function (response) {
           return response.json();
@@ -128,6 +63,92 @@ function fetchData () {
           console.log(JSON.parse(localStorage.getItem("petTentialPals")));
       })
 }
+function getFields() {
+  var catsOrDogs;
+  var typeParameter = $('#type-parameter').val();
+  var genderParameter = $('#gender-parameter').val();
+  var breedParameter =$('#breed-parameter').val();
+  var sizeParameter = $('#size-parameter').val();
+  var ageParameter = $('#age-parameter').val();
+  var coatParameter = $('#coat-parameter').val();
+
+
+
+  if (typeParameter == 1) {
+    catsOrDogs = "Cat";
+  } else if (typeParameter == 2) {
+    catsOrDogs = "Dog";
+  } 
+
+  if(catsOrDogs){
+    filterArray.push(addFilters('species.singular', 'equals', catsOrDogs ));
+  }
+
+  if(breedParameter){
+    filterArray.push(addFilters('breeds.name', 'contains', breedParameter));
+  }
+
+  if (sizeParameter == 1) {
+    filterArray.push(addFilters('animals.sizeGroup', 'contains', 'small'));
+  }  else if (sizeParameter == 2) {
+    filterArray.push(addFilters('animals.sizeGroup', 'contains', 'medium'));
+  }  else if (sizeParameter == 3) {
+    filterArray.push(addFilters('animals.sizeGroup', 'contains', 'large'));
+  } 
+
+  if(genderParameter == 1) {
+    filterArray.push(addFilters('animals.sex', 'equals', 'Male'));
+  }else if(genderParameter == 2) {
+    filterArray.push(addFilters('animals.sex', 'equals', 'Female'));
+  }
+
+  if (ageParameter == 1){
+    filterArray.push(addFilters('animals.ageGroup', 'equals', 'Baby'));
+  }else if (ageParameter == 2){
+    filterArray.push(addFilters('animals.ageGroup', 'equals', 'Adult'));
+  }else if (ageParameter == 3){
+    filterArray.push(addFilters('animals.ageGroup', 'equals', 'Senior'));
+  }
+  if (coatParameter == 1){
+    filterArray.push(addFilters('animals.coatLength', 'contains', 'short'));
+  }else if (coatParameter == 2){
+    filterArray.push(addFilters('animals.coatLength', 'contains', 'medium'));
+  }else if (coatParameter == 3){
+    filterArray.push(addFilters('animals.coatLength', 'contains', 'long'));
+  }
+
+  if ($('#cat-friendly-parameter').is(":checked")){
+    filterArray.push(addFilters('animals.isCatsOk', 'equals', 'true'));
+  } if ($('#dog-friendly-parameter').is(":checked")){
+    filterArray.push(addFilters('animals.isDogsOk', 'equals', 'true'));
+  } if ($('#kid-friendly-parameter').is(":checked")){
+    filterArray.push(addFilters('animals.isKidsOk', 'equals', 'true'));
+  }if ($('#shots-parameter').is(":checked")){
+    filterArray.push(addFilters('animals.isCurrentVaccinations', 'equals', 'true'));
+  }
+}
+
+function getLocation() {
+  var miles;
+  const zip = $('#zip-code').val() || 98029;
+  if ($('#25-miles').is(":checked")){
+    miles = 25;
+  }
+  else if ($('#50-miles').is(":checked")){
+    miles = 50;
+  }
+  else if ($('#100-miles').is(":checked")){
+    miles = 100;
+  }
+  else if ($('#200-miles').is(":checked")){
+    miles = 200;
+  }
+  return {'miles': miles,
+  'postalcode' : zip
+ }
+}
+
+
 
 document.querySelector('#furiends-button').addEventListener('click',function() {
     console.log('Furiends List Clicked!');
@@ -141,3 +162,11 @@ document.querySelector('#furiends-button').addEventListener('click',function() {
     $('.row').addClass('hide');
     setTimeout(function () {window.location = "./pet-tential-results.html"}, 2500);
   });
+
+  function addFilters(fieldName, operation, criteria) {
+      return {
+        fieldName : fieldName,
+        operation: operation,
+        criteria: criteria
+      };
+  }

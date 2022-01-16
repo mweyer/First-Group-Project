@@ -2,10 +2,12 @@
 
 var apiUrl = "https://api.rescuegroups.org/v5/public/animals/";
 var curSlide = 0;
-
+var curCount =0; 
 var objOfAnimals = {}
 var arrayOfData = [];
+var fetchReturned = {};
 function updateCarouselCards(animalData) {
+     var photoCount = animalData.attributes.pictureCount;
     var carouselItem = document.createElement('button');
       carouselItem.classList.add("carousel-item");
       carouselItem.classList.add("black-text");
@@ -15,7 +17,19 @@ function updateCarouselCards(animalData) {
     var carouselImageBox = document.createElement('div');
       carouselImageBox.classList.add("card-image");
     var cardImage = document.createElement('img');
-      cardImage.src = animalData.attributes.pictureThumbnailUrl;
+    if(photoCount){
+        cardImage.src = updatePhotos(photoCount);
+      }else { 
+        if( animalData.attributes.pictureThumbnailUrl)
+          {
+            cardImage.src = animalData.attributes.pictureThumbnailUrl;
+          } else {
+            var cardError =  document.createElement('h4');
+            cardError.innerText = 'Dog-gone it! Something claws-ed this photo to go missing.'
+            carouselImageBox.append(cardError);
+
+          }
+      }
     var carouselCardDescription = document.createElement('div');
       carouselCardDescription.classList.add('card-content');
     var carouselAnimalName = document.createElement('h6');
@@ -30,8 +44,8 @@ function updateCarouselCards(animalData) {
     carouselCard.append(carouselImageBox);
     carouselImageBox.append(cardImage);
     carouselCard.append(carouselCardDescription);
-    carouselAnimalName.innerText = animalData.attributes.name + ' the ' + animalData.attributes.breedPrimary;
-    // carouselAnimalDescription.innerText = animalData.attributes.descriptionText;
+    carouselAnimalName.innerText = animalData.attributes.name;
+    carouselAnimalDescription.innerText =  animalData.attributes.breedPrimary + '\n\n' + animalData.attributes.distance + ' miles away';
 
     carouselCardDescription.append(carouselAnimalName);
     carouselCardDescription.append(carouselAnimalDescription);
@@ -39,6 +53,14 @@ function updateCarouselCards(animalData) {
     var carousel  = document.querySelector('.carousel-slider');
     carousel.classList.remove('initialized')
     carousel.append(carouselItem);
+}
+
+
+function updatePhotos(photoCount) {
+  var endPointer = (curCount + photoCount);
+  const photo =  fetchReturned.included[endPointer-1].attributes.large.url;
+  curCount = endPointer;
+  return photo;
 }
 
 function refreshCarousel() {
@@ -61,7 +83,7 @@ function openErrorModal() {
   var remove = $('#remove-button');
   var save =  $('#save-button');
   $('.loading').addClass('hide');
-
+  addHideClass($('.pet-tential-selection-buttons'));
   remove.click($('#modal1').modal('open'));
   save.click($('#modal1').modal('open'));
   removeHideClass(footer);
@@ -80,12 +102,11 @@ function saveAnimalToLocalStorageAndRemove() {
 }
 function getDataFromStorage() {
 
-  var animalData = JSON.parse(localStorage.getItem('petTentialPals')) || [];
-  console.log(animalData);
-  animalData = animalData['data'];
-  if (Array.isArray(animalData) && animalData.length > 0) {
+  fetchReturned = JSON.parse(localStorage.getItem('petTentialPals'));
+  console.log(fetchReturned);
+  if (fetchReturned && Object.keys(fetchReturned).length > 1) {
     console.log('In if statement')
-    getAnimalData(animalData);
+    getAnimalData(fetchReturned);
   }
   else{
     console.log('In else statement')
@@ -93,7 +114,8 @@ function getDataFromStorage() {
   }
 }
 
-function getAnimalData(animalData){
+function getAnimalData(fetchReturned){
+  animalData = fetchReturned['data'];
   animalData.forEach(element => {
     updateCarouselCards(element);
   }); 
@@ -113,7 +135,6 @@ function addHideClass(element) {
   element.addClass('hide');
 }
 
-
 function main(){
   addHideClass($('.carousel'));
   addHideClass($('.pet-tential-selection-buttons'));
@@ -132,7 +153,7 @@ function main(){
     saveAnimalToLocalStorageAndRemove();
   });
   
- document.querySelector('.fetch').addEventListener('click', function() {
+$('.fetch').click(function() {
     console.log('Furiends List Clicked!');
     localStorage.setItem('pettentials', JSON.stringify(arrayOfData));
     window.location = 'furiends-list.html';
