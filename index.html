@@ -63,7 +63,7 @@
           <br>
           <p>Which gender?</p>
           <select class="input-field" id="gender-parameter">
-            <option value="" disabled selected>Male or Female</option>
+            <option value=""  disabled selected></option>
             <option value="1">Male</option>
             <option value="2">Female</option>
           </select>
@@ -73,7 +73,7 @@
           <br>
           <p>What size?</p>
           <select class="input-field" id="size-parameter">
-            <option value="" disabled selected>Small, Medium, or Large</option>
+            <option value="" disabled selected></option>
             <option value="1">Small</option>
             <option value="2">Medium</option>
             <option value="3">Large</option>
@@ -81,7 +81,7 @@
           <br>
           <p>What age?</p>
           <select class="input-field" id="age-parameter">
-            <option value="" disabled selected>Young, Adult, or Senior</option>
+            <option value="" disabled selected></option>
             <option value="1">Young</option>
             <option value="2">Adult</option>
             <option value="3">Senior</option>
@@ -89,26 +89,62 @@
           <br>
           <p>How about the coat length of your pet?</p>
           <select class="input-field" id="coat-parameter">
-            <option value="" disabled selected>Short, Medium, or Long</option>
+            <option value="" disabled selected></option>
             <option value="1">Short</option>
             <option value="2">Medium</option>
             <option value="3">Long</option>
           </select>
           <br>
+          <div class="input-field col s6">
+            <input placeholder="Zip Code" id="zip-code" type="text">
+            <label for="zip-code">Location</label>
+          </div>
+          <p>
+            <label>
+              <input name="group1" type="radio" id='25-miles' checked />
+              <span>25 Miles</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="group1" type="radio" id='50-miles' />
+              <span>50 Miles</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="group1" type="radio"  id='100-miles'/>
+              <span>100 Miles</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="group1" type="radio"  id='200-miles'/>
+              <span>200 Miles</span>
+            </label>
+          </p>
           <!-- these are the checkboxes -->
-          <label>
-            <input type="checkbox" id="pictures-parameter"></input>
-            <span>Pictures are required</span>
-          </label>
-          <br>
+
           <label>
             <input type="checkbox" id="shots-parameter"></input>
             <span>Has all of their shots</span>
           </label>
           <br>
           <label>
-            <input type="checkbox" id="pet-friendly-parameter"></input>
-            <span>Okay around other pets</span>
+            <input type="checkbox" id="dog-friendly-parameter"></input>
+            <span>Okay around dogs</span>
+          </label>
+          <br>
+
+          <label>
+            <input type="checkbox" id="cat-friendly-parameter"></input>
+            <span>Okay around cats</span>
+          </label>
+          <br>
+
+          <label>
+            <input type="checkbox" id="kid-friendly-parameter"></input>
+            <span>Okay around kids</span>
           </label>
           <br>
         </div>
