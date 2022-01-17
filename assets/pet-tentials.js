@@ -17,6 +17,7 @@ function updateCarouselCards(animalData) {
     var carouselImageBox = document.createElement('div');
       carouselImageBox.classList.add("card-image");
     var cardImage = document.createElement('img');
+    cardImage.classList.add('animal-image');
     if(photoCount){
         cardImage.src = updatePhotos(photoCount);
       }else { 

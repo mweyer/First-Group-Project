@@ -14,28 +14,34 @@ nav {
 
 .carousel-slider{
     align-content: center;
-    height: 75vh;
+    height: 90vh;
 }
 
-.card{ 
+.card{
+
     border-radius: 8px; 
     position: relative !important;
     right: 20px !important;
+}
+
+.animal-image{
+    height: 50vh; 
+    object-fit: contain;
 }
 
 .pet-tential-selection-buttons, .pet-tential-footer, .modal-footer{
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-}
-.btn{
-    margin: 1vw;
-}
-.pet-tential-footer{
     position:absolute;
     bottom:0;
     width:100%;
 }
+
+.btn{
+    margin: 1vw;
+}
+
 .modal-footer{
     justify-content: space-evenly;
 }
