@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html style="font-size: 25px">
 
 <head>
   <title>Furiendr</title>
   <!--Import Google Icon Font-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&display=swap" rel="stylesheet">
   <!--Import materialize.css-->
   <link type="text/css" rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" media="screen,projection" />
@@ -16,7 +19,7 @@
 <body>
   <!-- this is the Furiender nav bar -->
   <nav>
-    <div class="nav-wrapper light-blue lighten-3">
+    <div class="nav-wrapper lighten-3">
       <img id="paw-img" src="./assets/paw-img.png">
       <a class="brand-logo center">Furiendr</a>
       <a class="right waves-effect waves-light btn" id="furiends-button" href="./furiends-list.html">Furiend's List</a>
@@ -29,7 +32,6 @@
   </div>
     <div class="row">
       <!-- these are both pet facts cards -->
-      <div class="pet-facts-column">
         <div class="cat-facts-card">
           <div class="card horizontal light-blue lighten-3">
             <div class="card-content">
@@ -38,42 +40,103 @@
             </div>
           </div>
         </div>
-        <div class="dog-facts-card">
-          <div class="card horizontal light-blue lighten-3">
-            <div class="card-content">
-              <span class="card-title">Dog Facts:</span>
-              <p class="dog-facts"></p>
-            </div>
-          </div>
-        </div>
-      </div>
     
     <!-- this is the pet parameters card -->
     <div class="pet-parameters-card">
       <div class="card grey lighten-2">
         <div class="card-content">
           <!-- these are the materialize select inputs -->
-          <span class="card-title center">Pet Parameters</span>
           <p>What kind of pet are you looking for?</p>
           <select class="input-field" id="type-parameter">
-            <option value="" disabled selected>Cat or Dog</option>
+            <option value="" disabled selected>Please choose an option</option>
             <option value="1">Cat</option>
             <option value="2">Dog</option>
+            <option value="3">Both</option>
           </select>
           <br>
-          <p>Which gender?</p>
+          <p>Any specific gender?</p>
           <select class="input-field" id="gender-parameter">
-            <option value="" disabled selected>Male or Female</option>
+            <option value=""  disabled selected></option>
             <option value="1">Male</option>
             <option value="2">Female</option>
+            <option value="3">Both</option>
           </select>
           <br>
-          <p>What type of breed?</p>
+          <p>Any specific breeds?</p>
           <input type="text" id="breed-parameter">
           <br>
-          <p>What size?</p>
+          <!-- <table>
+            <tr>
+              <td> 
+                <label>
+                <input type="checkbox"></input>
+                <span>Small</span>
+                </label>
+              </td>
+              <td>
+                <label>
+                  <input type="checkbox"></input>
+                  <span>Medium</span>
+                </label>
+              </td>
+              <td>
+                <label>
+                  <input type="checkbox"></input>
+                  <span>Large</span>
+                </label>
+              </td>
+            </tr>
+          </table>
+          <p>Any specific age groups?</p>
+          <table>
+            <tr>
+              <td> 
+                <label>
+                <input type="checkbox"></input>
+                <span>Infant</span>
+                </label>
+              </td>
+              <td>
+                <label>
+                  <input type="checkbox"></input>
+                  <span>Young</span>
+                </label>
+              </td>
+              <td>
+                <label>
+                  <input type="checkbox"></input>
+                  <span>Adult</span>
+                </label>
+              </td>
+            </tr>
+          </table>
+          <p>Any specific coat lengths?</p>
+          <table>
+            <tr>
+              <td> 
+                <label>
+                <input type="checkbox"></input>
+                <span>Short</span>
+                </label>
+              </td>
+              <td>
+                <label>
+                  <input type="checkbox"></input>
+                  <span>Medium</span>
+                </label>
+              </td>
+              <td>
+                <label>
+                  <input type="checkbox"></input>
+                  <span>Long</span>
+                </label>
+              </td>
+            </tr>
+          </table> -->
+          <br>
+          <p>Any specific size?</p>
           <select class="input-field" id="size-parameter">
-            <option value="" disabled selected>Small, Medium, or Large</option>
+            <option value="" disabled selected></option>
             <option value="1">Small</option>
             <option value="2">Medium</option>
             <option value="3">Large</option>
@@ -81,7 +144,7 @@
           <br>
           <p>What age?</p>
           <select class="input-field" id="age-parameter">
-            <option value="" disabled selected>Young, Adult, or Senior</option>
+            <option value="" disabled selected></option>
             <option value="1">Young</option>
             <option value="2">Adult</option>
             <option value="3">Senior</option>
@@ -89,26 +152,62 @@
           <br>
           <p>How about the coat length of your pet?</p>
           <select class="input-field" id="coat-parameter">
-            <option value="" disabled selected>Short, Medium, or Long</option>
+            <option value="" disabled selected></option>
             <option value="1">Short</option>
             <option value="2">Medium</option>
             <option value="3">Long</option>
           </select>
           <br>
+          <div class="input-field col s6">
+            <input placeholder="Zip Code" id="zip-code" type="text">
+            <label for="zip-code">Location</label>
+          </div>
+          <p>
+            <label>
+              <input name="group1" type="radio" id='25-miles' checked />
+              <span>25 Miles</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="group1" type="radio" id='50-miles' />
+              <span>50 Miles</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="group1" type="radio"  id='100-miles'/>
+              <span>100 Miles</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="group1" type="radio"  id='200-miles'/>
+              <span>200 Miles</span>
+            </label>
+          </p>
           <!-- these are the checkboxes -->
-          <label>
-            <input type="checkbox" id="pictures-parameter"></input>
-            <span>Pictures are required</span>
-          </label>
-          <br>
+
           <label>
             <input type="checkbox" id="shots-parameter"></input>
             <span>Has all of their shots</span>
           </label>
           <br>
           <label>
-            <input type="checkbox" id="pet-friendly-parameter"></input>
-            <span>Okay around other pets</span>
+            <input type="checkbox" id="dog-friendly-parameter"></input>
+            <span>Okay around dogs</span>
+          </label>
+          <br>
+
+          <label>
+            <input type="checkbox" id="cat-friendly-parameter"></input>
+            <span>Okay around cats</span>
+          </label>
+          <br>
+
+          <label>
+            <input type="checkbox" id="kid-friendly-parameter"></input>
+            <span>Okay around kids</span>
           </label>
           <br>
         </div>
@@ -117,11 +216,19 @@
         </div>
       </div>
     </div>
-    <div class=row>
-      <div class="pet-image-card right">
-        <img src="assets\images\cat-and-dog.jpg" alt="pet-image">
+    <div class="dog-facts-card">
+      <div class="card horizontal light-blue lighten-3">
+        <div class="card-content">
+          <span class="card-title">Dog Facts:</span>
+          <p class="dog-facts"></p>
+        </div>
       </div>
     </div>
+    <!-- <div class=row>
+      <div class="pet-image-card right">
+        <img src="./assets/images/cat-and-dog.jpg" alt="pet-image">
+      </div>
+    </div> -->
     </div>
   </main>
   <!--JavaScript at end of body for optimized loading-->
