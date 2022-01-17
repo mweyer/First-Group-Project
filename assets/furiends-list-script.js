@@ -74,43 +74,54 @@ function populatePage()
   // {
   for (var i = 0; i < savedAnimalData.length; i++)
   {
+       var newRow = document.createElement('row');
+       var newCol = document.createElement('col');
+       var newCard = document.createElement("div");
        var resultPetList = document.createElement('ul');
        var resultPetImage = document.createElement('img');
        var resultPetName = document.createElement('p');
-       var resultPetType = document.createElement('p');
+       var resultPetNameTitle = document.createElement('h2');
        var resultPetAge = document.createElement('p');
        var resultPetBreed = document.createElement('p');
        var resultPetCoatLength = document.createElement('p');
-       var newCard = document.createElement("div");
+       var buttonCard = document.createElement('div');
        var adoptButton = document.createElement('btn');
+       var removeButton = document.createElement('btn');
 
       resultPetName.className += " class-content pet-card-body-text";
-      resultPetType.className += " class-content pet-card-body-text";
+      resultPetNameTitle.className += " class-content pet-card-title-text";
       resultPetAge.className += " class-content pet-card-body-text";
       resultPetBreed.className += " class-content pet-card-body-text";
       resultPetCoatLength.className += " class-content pet-card-body-text";
 
+
+
  // TODO: Need to find other attributes to populate the remaining sections
  // Adding the text content from the collected results so they can be later appended to the results html page
-       resultPetName.textContent = "Name: " + savedAnimalData[i].attributes.name;
-       resultPetType.textContent = "Type: ";
+      resultPetNameTitle = "Name: ";
+      resultPetName.textContent = resultPetNameTitle + savedAnimalData[i].attributes.name;
        resultPetBreed.textContent = "Breed: " + savedAnimalData[i].attributes.breedPrimary;
        resultPetAge.textContent = "Age: " + savedAnimalData[i].attributes.ageGroup;
        resultPetCoatLength.textContent = "Coat Length: " + savedAnimalData[i].attributes.coatLength;
        adoptButton.textContent = "Adopt Me";
+       removeButton.textContent = "Remove";
 
 
        resultPetImage.src = savedAnimalData[i].attributes.pictureThumbnailUrl;
        resultPetImage.width = "300";
+       resultPetImage.height = "300";
        resultPetImage.className = "pet-image z-depth-2"
 
 
  // Append section that will attach the above text content and apply it to the resultContainer on the results html page
        newCard.className="card furiends-cards";
        newCard.id = "card";
+
+       buttonCard.className="card button-card"
        //add + i to newcard.id when for loop happens
 
        adoptButton.className="btn adopt-button waves-effect waves-light";
+       removeButton.className="btn remove-button waves-effect red waves-red";
        console.log(newCard.id);
 
 
@@ -118,11 +129,12 @@ function populatePage()
        newCard.append(resultPetImage);
        newCard.append(resultPetList);
        resultPetList.append(resultPetName);
-       resultPetList.append(resultPetType);
        resultPetList.append(resultPetBreed);
        resultPetList.append(resultPetAge);
        resultPetList.append(resultPetCoatLength);
-       resultPetList.append(adoptButton);
+       resultPetList.append(buttonCard);
+       buttonCard.append(adoptButton);
+       buttonCard.append(removeButton);
 
   }
 }
