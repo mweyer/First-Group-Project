@@ -1,11 +1,13 @@
-// Local storage for first page results is petTentialPals
-
 $(document).ready(function() {
     $('select').formSelect();
 });
 
 var filterArray=[];
+var catsOrDogs;
+var typeParameter;
+var genderParameter;
 
+// TODO: reset fields after pressing after load screen starts
 
 fetch('https://dog-api.matthewswar.com/api/facts')
 .then(response => response.json())
@@ -18,7 +20,6 @@ fetch('https://dog-api.matthewswar.com/api/facts')
  fetch('https://cat-fact.herokuapp.com/facts')
 .then(response => response.json())
 .then(data => {
-
     var item = data[Math.floor(Math.random()*data.length)]
     var petfacts2 = document.querySelector('.cat-facts')
     petfacts2.innerText = item.text
@@ -28,8 +29,18 @@ fetch('https://dog-api.matthewswar.com/api/facts')
 
 function fetchFunction() {
   getFields();
-  console.log("How API url looks after parameters: ");
-  fetchData(filterArray);
+  console.log("If type parameter and genderParameter are true: " + (typeParameter && genderParameter));
+  if (typeParameter && genderParameter) {
+    fetchData(filterArray);
+    $('.loading-screen').removeClass('hide');
+    $('.row').addClass('hide');
+
+    // determine if clearing filters here affects response
+    setTimeout(function () {window.location = "./pet-tential-results.html"}, 2500);
+  } else {
+    window.alert("Please select an option");
+    filterArray = [];
+  }
 }
 function fetchData (filters) {
   var apiUrl = "https://api.rescuegroups.org/v5/public/animals/search/available/&include=pictures";
@@ -63,31 +74,39 @@ function fetchData (filters) {
           console.log(JSON.parse(localStorage.getItem("petTentialPals")));
       })
 }
+
 function getFields() {
-  var catsOrDogs;
-  var typeParameter = $('#type-parameter').val();
-  var genderParameter = $('#gender-parameter').val();
+  typeParameter = $('#type-parameter').val();
+  genderParameter = $('#gender-parameter').val();
   var breedParameter =$('#breed-parameter').val();
   var sizeParameter = $('#size-parameter').val();
   var ageParameter = $('#age-parameter').val();
   var coatParameter = $('#coat-parameter').val();
 
-
-
+  // sets the filter criteria to cats, dogs, or both
   if (typeParameter == 1) {
-    catsOrDogs = "Cat";
+    filterArray.push(addFilters('species.singular', 'equals', 'Cat'));
   } else if (typeParameter == 2) {
-    catsOrDogs = "Dog";
-  } 
-
-  if(catsOrDogs){
-    filterArray.push(addFilters('species.singular', 'equals', catsOrDogs ));
+    filterArray.push(addFilters('species.singular', 'equals', 'Dog'))
+  } else if (typeParameter == 3) {
+    filterArray.push(addFilters('species.singular', 'equals',  ["Cat", "Dog"]))
   }
 
+  // sets the criteria to male, female, or both
+  if(genderParameter == 1) {
+    filterArray.push(addFilters('animals.sex', 'equals', 'Male'));
+  }else if(genderParameter == 2) {
+    filterArray.push(addFilters('animals.sex', 'equals', 'Female'));
+  }else if(genderParameter == 3) {
+    filterArray.push(addFilters('animals.sex', 'equals', ["Male", "Female"]));
+  }
+
+  // checks if breedParameter is true and adds the value
   if(breedParameter){
     filterArray.push(addFilters('breeds.name', 'contains', breedParameter));
   }
 
+  // adds checked sizes to filters
   if (sizeParameter == 1) {
     filterArray.push(addFilters('animals.sizeGroup', 'contains', 'small'));
   }  else if (sizeParameter == 2) {
@@ -96,12 +115,7 @@ function getFields() {
     filterArray.push(addFilters('animals.sizeGroup', 'contains', 'large'));
   } 
 
-  if(genderParameter == 1) {
-    filterArray.push(addFilters('animals.sex', 'equals', 'Male'));
-  }else if(genderParameter == 2) {
-    filterArray.push(addFilters('animals.sex', 'equals', 'Female'));
-  }
-
+  // adds age groups to filters
   if (ageParameter == 1){
     filterArray.push(addFilters('animals.ageGroup', 'equals', 'Baby'));
   }else if (ageParameter == 2){
@@ -109,6 +123,8 @@ function getFields() {
   }else if (ageParameter == 3){
     filterArray.push(addFilters('animals.ageGroup', 'equals', 'Senior'));
   }
+
+  // adds coat length to filters
   if (coatParameter == 1){
     filterArray.push(addFilters('animals.coatLength', 'contains', 'short'));
   }else if (coatParameter == 2){
@@ -117,6 +133,7 @@ function getFields() {
     filterArray.push(addFilters('animals.coatLength', 'contains', 'long'));
   }
 
+  // adds these parameters to filters
   if ($('#cat-friendly-parameter').is(":checked")){
     filterArray.push(addFilters('animals.isCatsOk', 'equals', 'true'));
   } if ($('#dog-friendly-parameter').is(":checked")){
@@ -148,25 +165,20 @@ function getLocation() {
  }
 }
 
-
+function addFilters(fieldName, operation, criteria) {
+    return {
+      fieldName : fieldName,
+      operation: operation,
+      criteria: criteria
+    };
+}
 
 document.querySelector('#furiends-button').addEventListener('click',function() {
-    console.log('Furiends List Clicked!');
-  });
+  console.log('Furiends List Clicked!');
+});
 
-  document.querySelector('#fetch-button').addEventListener('click',function() {
-    console.log('Fetch Button Clicked!');
-
-    fetchFunction();
-    $('.loading-screen').removeClass('hide');
-    $('.row').addClass('hide');
-    setTimeout(function () {window.location = "./pet-tential-results.html"}, 2500);
-  });
-
-  function addFilters(fieldName, operation, criteria) {
-      return {
-        fieldName : fieldName,
-        operation: operation,
-        criteria: criteria
-      };
-  }
+document.querySelector('#fetch-button').addEventListener('click',function() {
+  console.log('Fetch Button Clicked!');
+  fetchFunction();
+  // makes sure option was selected
+});
