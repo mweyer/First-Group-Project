@@ -17,7 +17,7 @@ you when you click Furiend's List!
 ## Images
 ![alt text](https://github.com/mweyer/First-Group-Project/blob/dev/assets/images/ss-project.png)
 <div>
-![alt text](assets\images\ss2-project.PNG)
+![alt text](https://github.com/mweyer/First-Group-Project/blob/dev/assets/images/ss2-project.PNG)
 
 
 
