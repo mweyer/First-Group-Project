@@ -60,7 +60,7 @@ nav .brand-logo.center {
 {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    grid-gap: 5px;
+    /* grid-gap: 5px; */
     align-items:stretch;
     background-color: var(--bg-eggplant);
     border-radius: 10px;
