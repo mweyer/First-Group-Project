@@ -48,7 +48,7 @@ function fetchFunction() {
   }
 }
 function fetchData (filters) {
-  var apiUrl = "https://api.rescuegroups.org/v5/public/animals/search/available/&include=pictures";
+  var apiUrl = "https://api.rescuegroups.org/v5/public/animals/search/available/?include=pictures,orgs";
 
   console.log(filters)
   var body = JSON.stringify({
