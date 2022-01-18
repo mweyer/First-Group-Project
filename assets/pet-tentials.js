@@ -1,6 +1,5 @@
 
 
-var apiUrl = "https://api.rescuegroups.org/v5/public/animals/";
 var curSlide = 0;
 var curCount =0; 
 var objOfAnimals = {}
@@ -19,14 +18,16 @@ function updateCarouselCards(animalData, photoList) {
       carouselImageBox.classList.add("card-image");
     var cardImage = document.createElement('img');
     cardImage.classList.add('animal-image');
+    var imgSRC = '';
     if(photoCount){
-        cardImage.src = updatePhotos(photoCount, photoList);
+        imgSRC = updatePhotos(photoCount, photoList);
+        cardImage.src = imgSRC;
         carouselImageBox.append(cardImage);
-
       }else { 
         if( animalData.attributes.pictureThumbnailUrl)
           {
-            cardImage.src = animalData.attributes.pictureThumbnailUrl;
+            imgSRC = animalData.attributes.pictureThumbnailUrl;
+            cardImage.src = imgSRC;
             carouselImageBox.append(cardImage);
 
           } else {
@@ -35,6 +36,8 @@ function updateCarouselCards(animalData, photoList) {
             carouselImageBox.append(cardError);
           }
       }
+      animalData['pictureURL'] = imgSRC;
+
     var carouselCardDescription = document.createElement('div');
       carouselCardDescription.classList.add('card-content');
     var carouselAnimalName = document.createElement('h6');
@@ -69,18 +72,22 @@ function updatePhotos(photoCount, photoList) {
 
 function refreshCarousel() {
   var carousel = $('#carousel');
+  var index = 0;
   if(carousel.children().length) {
   removeHideClass(carousel);
   carousel.removeClass('initialized') 
   carousel.carousel({
     onCycleTo: function(data) {
       curSlide=data;
-      console.log($(data).index());
-      var instance = M.Carousel.getInstance(carousel);
-      instance.set($(data).index());
-    }
+      index = $(data).index();
+    },
+    duration: 100,
+    'set': index
   });
+  console.log('Index is ' + index);
 
+  // var instance = M.Carousel.init(carousel);
+  // carousel.set(index);
   }else{
     openErrorModal();
   }
@@ -142,6 +149,7 @@ function addHideClass(element) {
 }
 
 function createPhotoList() {
+  localStorage.setItem('orgs', JSON.stringify(fetchReturned['included'].filter(element => element.type == 'orgs')))
  return fetchReturned['included'].filter(element => element.type == 'pictures');
 }
 
@@ -166,8 +174,6 @@ function main(){
 $('.fetch').click(function() {
     console.log('Furiends List Clicked!');
     localStorage.setItem('pettentials', JSON.stringify(arrayOfData));
-    console.log(arrayOfData);
-    // window.location = 'furiends-list.html';
   });
 
   $('#restart-button, #restart-footer-button').click(function() {
