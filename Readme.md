@@ -10,9 +10,9 @@ Scrolling through your results is easy and fun, merely save or remove the animal
 you when you click Furiend's List!
 
 ## Features
-Extensive search criteria to personalize your results.
-An easy to use carousel so you can scroll through your results smoothly.
-All saved results go to a results page that is saved for you and can be accessed anytime.
+*Extensive search criteria to personalize your results.
+*An easy to use carousel so you can scroll through your results smoothly.
+*All saved results go to a results page that is saved for you and can be accessed anytime.
 
 
 
