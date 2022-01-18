@@ -13,11 +13,15 @@ you when you click Furiend's List!
 * Extensive search criteria to personalize your results.
 * An easy to use carousel so you can scroll through your results smoothly.
 * All saved results go to a results page that is saved for you and can be accessed anytime.
+  
+## Images
+  
 
 
 
 ## Credits
-Maria Marsolek, Ronnel Abrido, Reid Flamm and Michael Weyer.  
+
+Maria Marsolek, Ronnel Abrido, Reid Flamm and Michael Weyer.  (Developers)
   <div>
 Materialize.com 
   <div>
