@@ -15,7 +15,10 @@ you when you click Furiend's List!
 * All saved results go to a results page that is saved for you and can be accessed anytime.
   
 ## Images
-  
+![alt text](assets\images\ss-project.png)
+<div>
+![alt text](assets\images\ss2-project.PNG)
+
 
 
 
