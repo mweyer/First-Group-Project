@@ -111,6 +111,11 @@ table tr td {
     animation: rotation 1.5s infinite;
 }
 
+.dropdown-content li > a, .dropdown-content li > span {
+    font-size: xx-large;
+    color: #ED7E47 !important;
+}
+
 @keyframes rotation {
     from {
       transform: rotate(0deg);
@@ -155,6 +160,7 @@ table tr td {
     }
 
     .dog-facts-card, .cat-facts-card {
+        display: none;
         margin: 0 0;
     }
   }
