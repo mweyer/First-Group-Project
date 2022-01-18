@@ -21,7 +21,7 @@
     <div class="nav-wrapper lighten-3">
       <img id="paw-img" src="./assets/images/paw-img.png">
       <a class="brand-logo center">Furiendr</a>
-      <a class="right waves-effect waves-light btn" id="furiends-button" href="./furiends-list.html">Furiend's List</a>
+      <a class="right waves-orange btn" id="furiends-button" href="./furiends-list.html">Furiend's List</a>
     </div>
   </nav>
   <main>
@@ -33,6 +33,9 @@
       <!-- these are both pet facts cards -->
         <div class="cat-facts-card">
           <div class="card-content">
+            <img src="./assets/images/cat-line-art-purple.png" width="230px">
+            <br>
+            <br>
             <span class="card-title">Cat Facts:</span>
             <p class="cat-facts"></p>
           </div>
@@ -61,7 +64,6 @@
           <br>
           <p id="breed-parameter-header">Any specific breeds?</p>
           <input type="text" class="input-field" id="breed-parameter">
-          <br>
           <br>
           <p>Any specific size?</p>
           <select class="input-field" id="size-parameter">
@@ -155,16 +157,20 @@
     </div>
     <div class="dog-facts-card">
       <div class="card-content">
+        <img src="./assets/images/dog-line-art-purple.png" width="230px">
+        <br>
+        <br>
+        <br>
         <span class="card-title">Dog Facts:</span>
         <p class="dog-facts"></p>
       </div>
       <div id="warn-modal" class="modal">
         <div class="modal-content">
           <h4>Don't fur-get!</h4>
-          <p>Please choose an option for the first two questions</p>
+          <p>You have to put something for your pet type and zip code!</p>
         </div>
         <div class="modal-footer">
-          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Okay</a>
+          <a href="#!" id="warn-modal-button" class="modal-close waves-effect waves-green btn-flat">Okay</a>
         </div>
       </div>
     </div>

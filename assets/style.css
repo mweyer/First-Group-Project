@@ -10,13 +10,17 @@
 nav .nav-wrapper {
     background-color: var(--bg-eggplant);
     height: 80px;
-    box-shadow: 0 0 10px rgb(199, 199, 199);
+    box-shadow: 0 0 10px rgb(159, 159, 159);
 }
 
 #paw-img {
     position: relative;
     left: 10%;
 }
+
+.btn:hover {
+    background-color: #d1ff65;
+ }
 
 .btn {
     font-size: 1rem;
@@ -25,9 +29,7 @@ nav .nav-wrapper {
     background: var(--btn-junebud);
     color: var(--bg-eggplant);
     border-radius: 10px;
-    padding: 5px;
-    height: 40px;
-    /* width: 160px; */
+    padding-top: 3px;
 }
 
 #furiends-button {
@@ -52,6 +54,7 @@ div.row {
 
 .cat-facts-card .card-title, .dog-facts-card .card-title {
     font-size: 1rem;
+    display: block;
 }
 
 div.cat-facts-card {
@@ -88,8 +91,13 @@ table tr td {
     text-align: left;
 }
 
-.cat-facts-card, .dog-facts-card {
-    margin: 100px 15px;
+.cat-facts-card{
+    margin: 200px 15px;
+    width: 22%;
+}
+
+.dog-facts-card {
+    margin: 220px 15px;
     width: 22%;
 }
 
@@ -106,14 +114,8 @@ table tr td {
     border-radius: 50px;
     background-color: var(--bg-eggplant);
     color: var(--font-mandarin);
+    box-shadow: 0 0 10px rgb(159, 159, 159);
 }
-
-/* .pet-parameters-card div.card-content {
-    padding: 0 30px;
-    border-radius: 45px;
-    background-color: #5f4d61;
-    color: #EB8857;
-} */
 
 .pet-parameters-card .card .card-content .card-title {
     font-weight: bold;
@@ -132,6 +134,7 @@ input[type=text]:not(.browser-default) {
     height: 1.25rem;
     background: white;
     font-family: 'Dongle', 'Comic Sans', sans-serif;
+    display: block;
 }
 
 .input-field>label {
@@ -188,6 +191,30 @@ input[type=text]:not(.browser-default) {
     animation: rotation 1.5s infinite;
 }
 
+#warn-modal {
+    background: none;
+    transition: none;
+    box-shadow: none;
+    padding: 0 30px;
+    border-radius: 50px;
+    background-color: var(--bg-eggplant);
+    color: var(--font-mandarin);
+    box-shadow: 0 0 10px rgb(24, 24, 24);
+}
+
+#warn-modal-button {
+    background: var(--btn-junebud);
+    color: var(--bg-eggplant);
+    border-radius: 10px;
+    padding-top: 3px;
+    font-size: 1rem;
+    text-transform: none;
+}
+
+.modal .modal-footer {
+    background-color: var(--bg-eggplant);
+}
+
 @keyframes rotation {
     from {
       transform: rotate(0deg);
@@ -198,31 +225,21 @@ input[type=text]:not(.browser-default) {
 }
 
 .hide{
-    visibility:hidden;
+    visibility: hidden;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
     .row {
         display: flex;
         flex-wrap: wrap;
     }
 
-    .pet-facts-column {
-        margin: 0 0;
-        width: 100%;
+    .dog-facts-card, .cat-facts-card {
+        display: none;
     }
 
     .pet-parameters-card {
-        margin: 0 0;
+        margin: 50px 0;
         width: 100%;
     }
-
-    .dog-facts-card, .cat-facts-card {
-        margin: 0 0;
-        border: none;
-    }
-
-    /* .card {
-        box-shadow: none;
-    } */
   }

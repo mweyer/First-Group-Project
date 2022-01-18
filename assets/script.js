@@ -34,7 +34,7 @@ fetch('https://dog-api.matthewswar.com/api/facts')
 function fetchFunction() {
   getFields();
   console.log("If type parameter and genderParameter are true: " + (typeParameter && genderParameter));
-  if (typeParameter && genderParameter) {
+  if (typeParameter && $('#zip-code').val()) {
     localStorage.clear();
     fetchData(filterArray);
     $('.loading-screen').removeClass('hide');
@@ -76,16 +76,6 @@ function fetchData (filters) {
     console.log("The API response pulled from localStorage: ");
     console.log(JSON.parse(localStorage.getItem("petTentialPals")));
   });
-      // .then(function (response) {
-      //     return response.json();
-      // })
-      // .then(function (data) {
-      //     console.log("Curent API response: ");
-      //     console.log(data);
-      //     localStorage.setItem("petTentialPals", JSON.stringify(data));
-      //     console.log("The API response pulled from localStorage: ");
-      //     console.log(JSON.parse(localStorage.getItem("petTentialPals")));
-      // })
 }
 
 function getFields() {
@@ -240,5 +230,4 @@ $('#type-parameter').change(function () {
 });
 
 $('#reset-button').click(resetInputs);
-
-resetInputs();
+$(document).ready(resetInputs());
