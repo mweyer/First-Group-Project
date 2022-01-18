@@ -6,7 +6,8 @@ var curCount =0;
 var objOfAnimals = {}
 var arrayOfData = [];
 var fetchReturned = {};
-function updateCarouselCards(animalData) {
+
+function updateCarouselCards(animalData, photoList) {
      var photoCount = animalData.attributes.pictureCount;
     var carouselItem = document.createElement('button');
       carouselItem.classList.add("carousel-item");
@@ -19,16 +20,19 @@ function updateCarouselCards(animalData) {
     var cardImage = document.createElement('img');
     cardImage.classList.add('animal-image');
     if(photoCount){
-        cardImage.src = updatePhotos(photoCount);
+        cardImage.src = updatePhotos(photoCount, photoList);
+        carouselImageBox.append(cardImage);
+
       }else { 
         if( animalData.attributes.pictureThumbnailUrl)
           {
             cardImage.src = animalData.attributes.pictureThumbnailUrl;
+            carouselImageBox.append(cardImage);
+
           } else {
-            var cardError =  document.createElement('h4');
+            var cardError =  document.createElement('h5');
             cardError.innerText = 'Dog-gone it! Something claws-ed this photo to go missing.'
             carouselImageBox.append(cardError);
-
           }
       }
     var carouselCardDescription = document.createElement('div');
@@ -43,7 +47,6 @@ function updateCarouselCards(animalData) {
 
     carouselItem.append(carouselCard);
     carouselCard.append(carouselImageBox);
-    carouselImageBox.append(cardImage);
     carouselCard.append(carouselCardDescription);
     carouselAnimalName.innerText = animalData.attributes.name;
     carouselAnimalDescription.innerText =  animalData.attributes.breedPrimary + '\n\n' + animalData.attributes.distance + ' miles away';
@@ -57,9 +60,9 @@ function updateCarouselCards(animalData) {
 }
 
 
-function updatePhotos(photoCount) {
+function updatePhotos(photoCount, photoList) {
   var endPointer = (curCount + photoCount);
-  const photo =  fetchReturned.included[endPointer-1].attributes.large.url;
+  const photo =  photoList[endPointer-1].attributes.large.url;
   curCount = endPointer;
   return photo;
 }
@@ -72,14 +75,18 @@ function refreshCarousel() {
   carousel.carousel({
     onCycleTo: function(data) {
       curSlide=data;
+      console.log($(data).index());
+      var instance = M.Carousel.getInstance(carousel);
+      instance.set($(data).index());
     }
   });
+
   }else{
     openErrorModal();
   }
 }
 function openErrorModal() {
-  var modal = $('.modal').modal();
+  $('.modal').modal();
   var footer = $('.pet-tential-footer');
   var remove = $('#remove-button');
   var save =  $('#save-button');
@@ -98,7 +105,6 @@ function removeAnimalFromCarousel(){
 
 function saveAnimalToLocalStorageAndRemove() {
   arrayOfData.push(objOfAnimals[curSlide.id]);
-  console.log(arrayOfData);
   removeAnimalFromCarousel();
 }
 function getDataFromStorage() {
@@ -106,8 +112,7 @@ function getDataFromStorage() {
   fetchReturned = JSON.parse(localStorage.getItem('petTentialPals'));
   console.log(fetchReturned);
   if (fetchReturned && Object.keys(fetchReturned).length > 1) {
-    console.log('In if statement')
-    getAnimalData(fetchReturned);
+    getAnimalData(fetchReturned, createPhotoList());
   }
   else{
     console.log('In else statement')
@@ -115,10 +120,10 @@ function getDataFromStorage() {
   }
 }
 
-function getAnimalData(fetchReturned){
+function getAnimalData(fetchReturned, photoList){
   animalData = fetchReturned['data'];
   animalData.forEach(element => {
-    updateCarouselCards(element);
+    updateCarouselCards(element, photoList);
   }); 
   $('#remove-button').removeClass('disabled');
   $('#save-button').removeClass('disabled');
@@ -134,6 +139,10 @@ function removeHideClass(element) {
 
 function addHideClass(element) {
   element.addClass('hide');
+}
+
+function createPhotoList() {
+ return fetchReturned['included'].filter(element => element.type == 'pictures');
 }
 
 function main(){
@@ -157,7 +166,8 @@ function main(){
 $('.fetch').click(function() {
     console.log('Furiends List Clicked!');
     localStorage.setItem('pettentials', JSON.stringify(arrayOfData));
-    window.location = 'furiends-list.html';
+    console.log(arrayOfData);
+    // window.location = 'furiends-list.html';
   });
 
   $('#restart-button, #restart-footer-button').click(function() {

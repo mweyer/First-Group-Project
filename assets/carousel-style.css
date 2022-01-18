@@ -1,9 +1,29 @@
 body{
     width: 100vw;
 }
-nav {
-    background-color: rgb(112, 200, 255);
+.nav-wrapper {
+    background-color: #875C74;
 }
+
+#paw-img {
+    position: relative;
+    left: 10%;
+}
+
+#furiends-button {
+    position: relative;
+    margin-top: 15px;
+    right: 5%;
+}
+
+nav .brand-logo.center {
+    color: #EFC69B;
+    margin-top: 10px;
+}
+h5{
+    padding-top: 2vh;
+}
+
 .carousel .carousel-item {
     visibility:visible;
     width: 340px !important;
