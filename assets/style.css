@@ -1,15 +1,33 @@
 * {
     font-family: 'Dongle', sans-serif;
-    line-height: 1.0;
+    font-weight: 700;
+    line-height: 0.8;
+    --bg-eggplant: #4e3b50;
+    --btn-junebud: #BDE25C;
+    --font-mandarin: #ed7e47;
 }
 
-.nav-wrapper {
-    background-color: #875C74;
+nav .nav-wrapper {
+    background-color: var(--bg-eggplant);
+    height: 80px;
+    box-shadow: 0 0 10px rgb(199, 199, 199);
 }
 
 #paw-img {
     position: relative;
     left: 10%;
+}
+
+.btn {
+    font-size: 1rem;
+    text-transform: none;
+    font-weight: 700;
+    background: var(--btn-junebud);
+    color: var(--bg-eggplant);
+    border-radius: 10px;
+    padding: 5px;
+    height: 40px;
+    /* width: 160px; */
 }
 
 #furiends-button {
@@ -19,20 +37,29 @@
 }
 
 nav .brand-logo.center {
-    color: #EFC69B;
-    margin-top: 10px;
+    color: var(--font-mandarin);
+    margin: 15px 0;
+    font-size: 3rem;
 }
 
 label span {
-    color: white;
+    color: rgb(235, 200, 0);
 }
 
 div.row {
     display: flex;
 }
 
-.card-title.pet-facts {
-    font-size: 20px;
+.cat-facts-card .card-title, .dog-facts-card .card-title {
+    font-size: 1rem;
+}
+
+div.cat-facts-card {
+    margin-left: 10%;
+}
+
+div.dog-facts-card {
+    margin-right: 10%;
 }
 
 .furiends-cards {    
@@ -46,8 +73,14 @@ div.row {
     margin-left:25%;
 }
 
+::placeholder { 
+    font-family: 'Dongle', 'Comic Sans', sans-serif;
+    font-size: 1rem;
+    padding-left: 10px;
+}
+
 label span {
-    color: black;
+    color: var(--font-mandarin);
     margin-left: 5px;
 }
 
@@ -55,24 +88,57 @@ table tr td {
     text-align: left;
 }
 
-/* .pet-facts-column {
-    margin: 80px 15px;
-    width: 22%
-} */
-
 .cat-facts-card, .dog-facts-card {
     margin: 100px 15px;
-    width: 20%;
+    width: 22%;
 }
 
 .pet-parameters-card {
-    margin-top: 25px;
+    margin-top: 40px;
     width: 55%;
 }
 
-/* .pet-parameters-card .card .card-content {
-    background-color: #EFC69B;
+.pet-parameters-card div.card {
+    background: none;
+    transition: none;
+    box-shadow: none;
+    padding: 0 30px;
+    border-radius: 50px;
+    background-color: var(--bg-eggplant);
+    color: var(--font-mandarin);
+}
+
+/* .pet-parameters-card div.card-content {
+    padding: 0 30px;
+    border-radius: 45px;
+    background-color: #5f4d61;
+    color: #EB8857;
 } */
+
+.pet-parameters-card .card .card-content .card-title {
+    font-weight: bold;
+    margin: 30px 0;
+    font-size: 1.6rem;
+}
+
+.select-wrapper input.select-dropdown {
+    margin-top: 10px;
+    height: 1.25rem;
+    background: white;
+}
+
+input[type=text]:not(.browser-default) {
+    margin-top: 10px;
+    height: 1.25rem;
+    background: white;
+    font-family: 'Dongle', 'Comic Sans', sans-serif;
+}
+
+.input-field>label {
+    /* font-family: 'Dongle', 'Comic Sans', sans-serif; */
+    color: var(--font-mandarin);
+    font-size: 1.25rem;
+}
 
 .pet-image-card {
     margin-top: 100px;
@@ -91,6 +157,17 @@ table tr td {
 .furiends-cards
 {
     padding: 5px;
+}
+
+#bottom-buttons {
+    display: flex;
+    width: 100%;
+}
+
+.card .card-action {
+    width: 50%;
+    padding: 0;
+    padding-top: 20px;
 }
 
 .loading-screen
@@ -142,5 +219,10 @@ table tr td {
 
     .dog-facts-card, .cat-facts-card {
         margin: 0 0;
+        border: none;
     }
+
+    /* .card {
+        box-shadow: none;
+    } */
   }

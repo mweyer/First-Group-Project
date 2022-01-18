@@ -2,6 +2,10 @@ $(document).ready(function() {
     $('select').formSelect();
 });
 
+$(document).ready(function(){
+  $('.modal').modal();
+});
+
 var filterArray=[];
 var catsOrDogs;
 var typeParameter;
@@ -31,14 +35,15 @@ function fetchFunction() {
   getFields();
   console.log("If type parameter and genderParameter are true: " + (typeParameter && genderParameter));
   if (typeParameter && genderParameter) {
+    localStorage.clear();
     fetchData(filterArray);
     $('.loading-screen').removeClass('hide');
     $('.row').addClass('hide');
-
     // determine if clearing filters here affects response
     setTimeout(function () {window.location = "./pet-tential-results.html"}, 2500);
   } else {
-    window.alert("Please select an option");
+    $('#warn-modal').modal('open');
+    // clear data filters
     filterArray = [];
   }
 }
@@ -63,16 +68,24 @@ function fetchData (filters) {
       },
       body: body
   })
-      .then(function (response) {
-          return response.json();
-      })
-      .then(function (data) {
-          console.log("Curent API response: ");
-          console.log(data);
-          localStorage.setItem("petTentialPals", JSON.stringify(data));
-          console.log("The API response pulled from localStorage: ");
-          console.log(JSON.parse(localStorage.getItem("petTentialPals")));
-      })
+  .then(response => response.json())
+  .then(data => {
+    console.log("Curent API response: ");
+    console.log(data);
+    localStorage.setItem("petTentialPals", JSON.stringify(data));
+    console.log("The API response pulled from localStorage: ");
+    console.log(JSON.parse(localStorage.getItem("petTentialPals")));
+  });
+      // .then(function (response) {
+      //     return response.json();
+      // })
+      // .then(function (data) {
+      //     console.log("Curent API response: ");
+      //     console.log(data);
+      //     localStorage.setItem("petTentialPals", JSON.stringify(data));
+      //     console.log("The API response pulled from localStorage: ");
+      //     console.log(JSON.parse(localStorage.getItem("petTentialPals")));
+      // })
 }
 
 function getFields() {
@@ -173,6 +186,38 @@ function addFilters(fieldName, operation, criteria) {
     };
 }
 
+function resetInputs () {
+  console.log("reset pressed");
+  // $('#type-parameter').attr("type", "reset");
+  // $('#type-parameter').index(-1);
+  // typeParameter = document.getElementById('type-parameter');
+  // typeParameter.selectIndex = 0;
+  $('#type-parameter').prop('selectedIndex', 0);
+  $('#type-parameter').formSelect(); 
+  $('#gender-parameter').prop('selectedIndex', 0);
+  $('#gender-parameter').formSelect(); 
+  $('#breed-parameter').val('');
+  $('#size-parameter').prop('selectedIndex', 0);
+  $('#size-parameter').formSelect(); 
+  $('#age-parameter').prop('selectedIndex', 0);
+  $('#age-parameter').formSelect(); 
+  $('#coat-parameter').prop('selectedIndex', 0);
+  $('#coat-parameter').formSelect(); 
+  $('#zip-code').val('');
+  $('#25-miles').prop("checked", true);
+  $('#50-miles').prop("checked", false);
+  $('#100-miles').prop("checked", false);
+  $('#200-miles').prop("checked", false);
+  $('input:checkbox').prop("checked", false);
+  var kidCheckbox = $('#kid-friendly-parameter');
+  kidCheckbox.removeAttr('checked');
+  // $('#gender-parameter option').prop('selected', resetForm);
+}
+
+function resetForm () {
+  return this.defaultSelected;
+}
+
 document.querySelector('#furiends-button').addEventListener('click',function() {
   console.log('Furiends List Clicked!');
 });
@@ -182,3 +227,18 @@ document.querySelector('#fetch-button').addEventListener('click',function() {
   fetchFunction();
   // makes sure option was selected
 });
+
+$('#type-parameter').change(function () {
+  if ($('#type-parameter').val() == 1) {
+      $('#breed-parameter-header').addClass('hide');
+      $('#breed-parameter').addClass('hide');
+    }
+    else {
+      $('#breed-parameter-header').removeClass('hide');
+      $('#breed-parameter').removeClass('hide');
+    }
+});
+
+$('#reset-button').click(resetInputs);
+
+resetInputs();
