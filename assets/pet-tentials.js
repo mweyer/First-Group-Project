@@ -7,7 +7,7 @@ var arrayOfData = [];
 var fetchReturned = {};
 
 function updateCarouselCards(animalData, photoList) {
-     var photoCount = animalData.attributes.pictureCount;
+    var photoCount = animalData.attributes.pictureCount;
     var carouselItem = document.createElement('button');
       carouselItem.classList.add("carousel-item");
       carouselItem.classList.add("black-text");
