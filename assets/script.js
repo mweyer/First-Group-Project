@@ -10,18 +10,10 @@ var genderParameter;
 // TODO: reset fields after pressing after load screen starts
 
 fetch('https://dog-api.matthewswar.com/api/facts')
-.then(response => {
-  if (response.ok) {
-    return response.json();
-  } else {
-    openErrorModal();
-    throw new Error('Something went wrong');
-  }})
 .then(data => {
     var petfacts1 = document.querySelector('.dog-facts')
     petfacts1.innerText = data.facts 
-    console.log("Dog facts response: ")
-    console.log(data)});
+});
 
  fetch('https://cat-fact.herokuapp.com/facts')
 .then(response => response.json())
@@ -29,22 +21,21 @@ fetch('https://dog-api.matthewswar.com/api/facts')
     var item = data[Math.floor(Math.random()*data.length)]
     var petfacts2 = document.querySelector('.cat-facts')
     petfacts2.innerText = item.text
-    console.log("Cat facts response: ")
-    console.log(item)
+
 });
 
 function fetchFunction() {
+  $('.loading-screen').removeClass('hide');
+  $('.row').addClass('hide');
   getFields();
-  console.log("If type parameter and genderParameter are true: " + (typeParameter && genderParameter));
   if (typeParameter && genderParameter) {
     fetchData(filterArray)
     .then(function(response){
-      $('.loading-screen').removeClass('hide');
-      $('.row').addClass('hide');
       // determine if clearing filters here affects response
-      if (response.status < 400){
+      setTimeout(()=>{
         window.location = "./pet-tential-results.html"
-      }
+      }, 2500)
+      
     })
   } else {
     window.alert("Please select an option");
@@ -54,15 +45,12 @@ function fetchFunction() {
 function fetchData (filters) {
   var apiUrl = "https://api.rescuegroups.org/v5/public/animals/search/available/?include=pictures,orgs";
 
-  console.log(filters)
   var body = JSON.stringify({
     "data": {
       "filterRadius": getLocation(),
       "filters": filters
     }
   });
-  console.log('Body ');
-  console.log(body);
   return fetch(apiUrl, {
     method: 'POST',
     headers: {
@@ -74,18 +62,16 @@ function fetchData (filters) {
   })
       .then(function (response) {
         if (response.status > 399) {
-          throw Error(response.statusText);
+          throw Error(response.status);
       }
           return response.json();
       })
       .then(function (data) {
-          console.log("Curent API response: ");
-          console.log(data);
           localStorage.setItem("petTentialPals", JSON.stringify(data));
-          console.log("The API response pulled from localStorage: ");
-          console.log(JSON.parse(localStorage.getItem("petTentialPals")));
+        return data;
       }) .catch((error) => {
         openErrorModal();
+        return error;
       })
 }
 
@@ -197,7 +183,7 @@ function openErrorModal() {
 document.querySelector('#restart-button').addEventListener('click',function() {
   //TODO Add restart function on click
   window.location = '../index.html'
-  console.log('Furiends List Clicked!');
+  console.log('Restart Clicked!');
 });
 
 document.querySelector('#furiends-button').addEventListener('click',function() {
