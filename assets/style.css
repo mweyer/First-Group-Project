@@ -52,10 +52,6 @@ nav .brand-logo.center {
     text-shadow: 2px 2px 5px var(--text-shadow);
 }
 
-/* label span {
-    color: rgb(235, 200, 0);
-} */
-
 div.row {
     display: flex;
 }
