@@ -119,6 +119,20 @@ table tr td {
       transform: rotate(359deg);
     }
 }
+#error-modal{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    position:absolute;
+    padding: 0;
+    margin: 10px 0;
+    bottom:0;
+}
+
+
+.modal-content{
+    height: 25vh;
+}
 
 .hide{
     visibility:hidden;
