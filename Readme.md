@@ -18,8 +18,9 @@ All saved results go to a results page that is saved for you and can be accessed
 
 ## Credits
 Maria Marsolek, Ronnel Abrido, Reid Flamm and Michael Weyer.  
-<div>
+  <div>
 Materialize.com 
+  <div>
 pixabay.com
 coolors.com
 RescueGroups.org
