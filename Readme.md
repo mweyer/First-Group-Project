@@ -17,8 +17,7 @@ All saved results go to a results page that is saved for you and can be accessed
 
 
 ## Credits
-Maria Marsolek, Ronnel Abrido, Reid Flamm and Michael Weyer.  
-  <div>
+Maria Marsolek, Ronnel Abrido, Reid Flamm and Michael Weyer.  <div>
 Materialize.com 
   <div>
 pixabay.com
