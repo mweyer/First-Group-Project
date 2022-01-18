@@ -19,7 +19,7 @@
   <!-- this is the Furiender nav bar -->
   <nav>
     <div class="nav-wrapper lighten-3">
-      <img id="paw-img" src="./assets/images/paw-img.png">
+      <a href="./index.html"><img id="paw-img" src="./assets/images/paw-print-green.png"></a>
       <a class="brand-logo center">Furiendr</a>
       <a class="right waves-orange btn" id="furiends-button" href="./furiends-list.html">Furiend's List</a>
     </div>
@@ -33,7 +33,7 @@
       <!-- these are both pet facts cards -->
         <div class="cat-facts-card">
           <div class="card-content">
-            <img src="./assets/images/cat-line-art-purple.png" width="230px">
+            <img src="./assets/images/cat-line-art-purple.png" height="200px">
             <br>
             <br>
             <span class="card-title">Cat Facts:</span>
@@ -157,8 +157,7 @@
     </div>
     <div class="dog-facts-card">
       <div class="card-content">
-        <img src="./assets/images/dog-line-art-purple.png" width="230px">
-        <br>
+        <img class="dog-img" src="./assets/images/dog-line-art-purple.png" height="200px">
         <br>
         <br>
         <span class="card-title">Dog Facts:</span>
@@ -174,6 +173,15 @@
         </div>
       </div>
     </div>
+    </div>
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <h4>Website not found.</h4>
+        <p id ='error-message'>Please try again.</p>
+      </div>
+      <div id = 'error-modal' class="modal-footer">
+        <button id='restart-button'  class="waves-effect waves-light btn"><i class="material-icons left">restart_alt</i>Try Again</button> 
+      </div>
     </div>
   </main>
   <!--JavaScript at end of body for optimized loading-->

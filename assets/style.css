@@ -14,8 +14,10 @@ nav .nav-wrapper {
 }
 
 #paw-img {
+    margin-top: 15px;
     position: relative;
     left: 10%;
+    width: 50px;
 }
 
 .btn:hover {
@@ -34,7 +36,7 @@ nav .nav-wrapper {
 
 #furiends-button {
     position: relative;
-    margin-top: 15px;
+    margin-top: 23px;
     right: 5%;
 }
 
@@ -57,12 +59,21 @@ div.row {
     display: block;
 }
 
+/* .dog-img {
+    padding-left: auto;
+    padding-right: auto;
+} */
+
 div.cat-facts-card {
-    margin-left: 10%;
+    margin: 300px 5%;
+    color: var(--bg-eggplant);
+    width: 20%;
 }
 
 div.dog-facts-card {
-    margin-right: 10%;
+    margin: 300px 5%;
+    color: var(--bg-eggplant);
+    width: 20%;
 }
 
 .furiends-cards {    
@@ -91,19 +102,21 @@ table tr td {
     text-align: left;
 }
 
-.cat-facts-card{
-    margin: 200px 15px;
+/* .cat-facts-card{
+    margin: 250px 15px;
     width: 22%;
+    color: var(--bg-eggplant);
 }
 
 .dog-facts-card {
-    margin: 220px 15px;
+    margin: 250px 15px;
     width: 22%;
-}
+    color: var(--bg-eggplant);
+} */
 
 .pet-parameters-card {
     margin-top: 40px;
-    width: 55%;
+    width: 60%;
 }
 
 .pet-parameters-card div.card {
@@ -114,7 +127,7 @@ table tr td {
     border-radius: 50px;
     background-color: var(--bg-eggplant);
     color: var(--font-mandarin);
-    box-shadow: 0 0 10px rgb(159, 159, 159);
+    box-shadow: 5px 5px 10px rgb(159, 159, 159);
 }
 
 .pet-parameters-card .card .card-content .card-title {
@@ -223,12 +236,26 @@ input[type=text]:not(.browser-default) {
       transform: rotate(359deg);
     }
 }
+#error-modal{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    position:absolute;
+    padding: 0;
+    margin: 10px 0;
+    bottom:0;
+}
+
+
+.modal-content{
+    height: 25vh;
+}
 
 .hide{
     visibility: hidden;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 1000px) {
     .row {
         display: flex;
         flex-wrap: wrap;
@@ -241,5 +268,11 @@ input[type=text]:not(.browser-default) {
     .pet-parameters-card {
         margin: 50px 0;
         width: 100%;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    #furiends-button {
+        display: none;
     }
   }

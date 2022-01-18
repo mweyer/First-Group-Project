@@ -33,20 +33,25 @@ fetch('https://dog-api.matthewswar.com/api/facts')
 
 function fetchFunction() {
   getFields();
-  console.log("If type parameter and genderParameter are true: " + (typeParameter && genderParameter));
   if (typeParameter && $('#zip-code').val()) {
     localStorage.clear();
-    fetchData(filterArray);
-    $('.loading-screen').removeClass('hide');
-    $('.row').addClass('hide');
-    // determine if clearing filters here affects response
-    setTimeout(function () {window.location = "./pet-tential-results.html"}, 2500);
-  } else {
-    $('#warn-modal').modal('open');
-    // clear data filters
-    filterArray = [];
+    fetchData(filterArray)
+    .then(function(response) {
+      $('.loading-screen').removeClass('hide');
+      $('.row').addClass('hide');
+      // determine if clearing filters here affects response
+        if (response.status < 400){
+            window.location = "./pet-tential-results.html"
+          }
+        }
+      )
+    } else {
+      $('#warn-modal').modal('open');
+      // clear data filters
+      filterArray = [];
+    }
   }
-}
+
 function fetchData (filters) {
   var apiUrl = "https://api.rescuegroups.org/v5/public/animals/search/available/?include=pictures,orgs";
 
@@ -59,7 +64,7 @@ function fetchData (filters) {
   });
   console.log('Body ');
   console.log(body);
-  fetch(apiUrl, {
+  return fetch(apiUrl, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/vnd.api+json',
@@ -68,14 +73,21 @@ function fetchData (filters) {
       },
       body: body
   })
-  .then(response => response.json())
-  .then(data => {
-    console.log("Curent API response: ");
-    console.log(data);
-    localStorage.setItem("petTentialPals", JSON.stringify(data));
-    console.log("The API response pulled from localStorage: ");
-    console.log(JSON.parse(localStorage.getItem("petTentialPals")));
-  });
+      .then(function (response) {
+        if (response.status > 399) {
+          throw Error(response.statusText);
+      }
+          return response.json();
+      })
+      .then(function (data) {
+          console.log("Curent API response: ");
+          console.log(data);
+          localStorage.setItem("petTentialPals", JSON.stringify(data));
+          console.log("The API response pulled from localStorage: ");
+          console.log(JSON.parse(localStorage.getItem("petTentialPals")));
+      }) .catch((error) => {
+        openErrorModal();
+      })
 }
 
 function getFields() {
@@ -207,6 +219,19 @@ function resetInputs () {
 function resetForm () {
   return this.defaultSelected;
 }
+
+
+function openErrorModal() {
+  var modal = $('.modal').modal();
+  $('.loading-screen').addClass('hide');
+  modal.modal('open');
+}
+
+document.querySelector('#restart-button').addEventListener('click',function() {
+  //TODO Add restart function on click
+  window.location = '../index.html'
+  console.log('Furiends List Clicked!');
+});
 
 document.querySelector('#furiends-button').addEventListener('click',function() {
   console.log('Furiends List Clicked!');
