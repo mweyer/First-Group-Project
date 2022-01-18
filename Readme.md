@@ -2,7 +2,7 @@
 
 ## Description
 Furiendr is an dynamic and intuitive site that connects people to cats and dogs that are available for adoption and looking for their forever home.  
-The site is designed to allow you to have multiple search criteria so you can narrow down the results to the specific pets you are looking for in your area.  
+The site is designed to allow you to have multiple search criteria so you can narrow down the results to the specific pets you are looking for in your area.  Your personal results are saved and can be accessed anytime you return to the site. 
 
 ## Usage
 Simply log onto the site and fill out the search form.  You will get your results in seconds and will be able to scroll through your results with ease.  
