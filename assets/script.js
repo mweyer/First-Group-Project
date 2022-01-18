@@ -2,6 +2,10 @@ $(document).ready(function() {
     $('select').formSelect();
 });
 
+$(document).ready(function(){
+  $('.modal').modal();
+});
+
 var filterArray=[];
 var catsOrDogs;
 var typeParameter;
@@ -10,6 +14,7 @@ var genderParameter;
 // TODO: reset fields after pressing after load screen starts
 
 fetch('https://dog-api.matthewswar.com/api/facts')
+.then(response => response.json())
 .then(data => {
     var petfacts1 = document.querySelector('.dog-facts')
     petfacts1.innerText = data.facts 
@@ -25,23 +30,24 @@ fetch('https://dog-api.matthewswar.com/api/facts')
 });
 
 function fetchFunction() {
-  $('.loading-screen').removeClass('hide');
-  $('.row').addClass('hide');
+  // $('.loading-screen').removeClass('hide');
+  // $('.row').addClass('hide');
   getFields();
-  if (typeParameter && genderParameter) {
+  if (typeParameter && $('#zip-code').val()) {
+    console.log(typeParameter && $('#zip-code').val());
+    localStorage.clear();
     fetchData(filterArray)
     .then(function(response){
-      // determine if clearing filters here affects response
       setTimeout(()=>{
         window.location = "./pet-tential-results.html"
-      }, 2500)
-      
+      }, 2500)      
     })
-  } else {
-    window.alert("Please select an option");
-    filterArray = [];
+    } else {
+      $('#warn-modal').modal('open');
+      filterArray = [];
+    }
   }
-}
+
 function fetchData (filters) {
   var apiUrl = "https://api.rescuegroups.org/v5/public/animals/search/available/?include=pictures,orgs";
 
@@ -173,6 +179,38 @@ function addFilters(fieldName, operation, criteria) {
     };
 }
 
+function resetInputs () {
+  console.log("reset pressed");
+  // $('#type-parameter').attr("type", "reset");
+  // $('#type-parameter').index(-1);
+  // typeParameter = document.getElementById('type-parameter');
+  // typeParameter.selectIndex = 0;
+  $('#type-parameter').prop('selectedIndex', 0);
+  $('#type-parameter').formSelect(); 
+  $('#gender-parameter').prop('selectedIndex', 0);
+  $('#gender-parameter').formSelect(); 
+  $('#breed-parameter').val('');
+  $('#size-parameter').prop('selectedIndex', 0);
+  $('#size-parameter').formSelect(); 
+  $('#age-parameter').prop('selectedIndex', 0);
+  $('#age-parameter').formSelect(); 
+  $('#coat-parameter').prop('selectedIndex', 0);
+  $('#coat-parameter').formSelect(); 
+  $('#zip-code').val('');
+  $('#25-miles').prop("checked", true);
+  $('#50-miles').prop("checked", false);
+  $('#100-miles').prop("checked", false);
+  $('#200-miles').prop("checked", false);
+  $('input:checkbox').prop("checked", false);
+  var kidCheckbox = $('#kid-friendly-parameter');
+  kidCheckbox.removeAttr('checked');
+  // $('#gender-parameter option').prop('selected', resetForm);
+}
+
+function resetForm () {
+  return this.defaultSelected;
+}
+
 
 function openErrorModal() {
   var modal = $('.modal').modal();
@@ -195,3 +233,17 @@ document.querySelector('#fetch-button').addEventListener('click',function() {
   fetchFunction();
   // makes sure option was selected
 });
+
+$('#type-parameter').change(function () {
+  if ($('#type-parameter').val() == 1) {
+      $('#breed-parameter-header').addClass('hide');
+      $('#breed-parameter').addClass('hide');
+    }
+    else {
+      $('#breed-parameter-header').removeClass('hide');
+      $('#breed-parameter').removeClass('hide');
+    }
+});
+
+$('#reset-button').click(resetInputs);
+$(document).ready(resetInputs());
