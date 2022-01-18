@@ -42,13 +42,15 @@ function populatePage()
 
      console.log(org);
 
-     //  var orgID = savedAnimalData[i].relationships.orgs.data[0].id;
-     //  console.log(orgID);
+     //Getting Org ID unique URLs
+      var orgID = savedAnimalData[i].relationships.orgs.data[0].id;
+      console.log(orgID);
 
-     //  if(orgID === org.attributes.type)
-     //  {
-
-     //  }
+      if(orgID == org[0].id)
+      {
+          adoptionURL = org[0].attributes.url;
+          console.log(adoptionURL);
+      }
 
  // TODO: Need to find other attributes to populate the remaining sections
  // Adding the text content from the collected results so they can be later appended to the results html page

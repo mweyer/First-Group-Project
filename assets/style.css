@@ -25,20 +25,19 @@ nav .nav-wrapper {
  }
 
 .btn {
-
-    /* padding-top: 3px; */
-}
-
-#furiends-button {
-    position: relative;
-    margin-top: 23px;
-    right: 5%;
     font-size: 1rem;
     text-transform: none;
     font-weight: 700;
     background: var(--btn-junebud);
     color: var(--bg-eggplant);
     border-radius: 10px;
+    padding-top: 3px;
+}
+
+#furiends-button {
+    position: relative;
+    margin-top: 23px;
+    right: 5%;
 }
 
 nav .brand-logo.center {
