@@ -11,8 +11,6 @@ var catsOrDogs;
 var typeParameter;
 var genderParameter;
 
-// TODO: reset fields after pressing after load screen starts
-
 fetch('https://dog-api.matthewswar.com/api/facts')
 .then(response => response.json())
 .then(data => {
@@ -20,14 +18,22 @@ fetch('https://dog-api.matthewswar.com/api/facts')
     petfacts1.innerText = data.facts 
 });
 
- fetch('https://cat-fact.herokuapp.com/facts')
-.then(response => response.json())
-.then(data => {
-    var item = data[Math.floor(Math.random()*data.length)]
-    var petfacts2 = document.querySelector('.cat-facts')
-    petfacts2.innerText = item.text
+fetchCatFacts();
 
-});
+function fetchCatFacts() {
+  fetch('https://cat-fact.herokuapp.com/facts')
+  .then(response => response.json())
+  .then(data => {
+      console.log(data);
+      var item = data[Math.floor(Math.random()*data.length)]
+      if (item.text === "I don't know anything about cats.") {
+        fetchCatFacts();
+      } else {
+        var petfacts2 = document.querySelector('.cat-facts')
+        petfacts2.innerText = item.text
+      }
+  });
+}
 
 function fetchFunction() {
   getFields();
