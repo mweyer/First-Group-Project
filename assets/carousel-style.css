@@ -106,10 +106,11 @@ h5{
     margin: 1vw;
 }
 .modal-content{
-    height: 25vh;
+    height: 30vh;
 }
 .modal-footer{
     justify-content: space-evenly;
+    margin-top: 25px;
 }
 #error-message {
     font-size: 1em;

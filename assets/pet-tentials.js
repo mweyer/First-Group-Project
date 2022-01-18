@@ -149,7 +149,9 @@ function addHideClass(element) {
 }
 
 function createPhotoList() {
-  localStorage.setItem('orgs', JSON.stringify(fetchReturned['included'].filter(element => element.type == 'orgs')))
+  const orgs = fetchReturned['included'].filter(element => element.type == 'orgs');
+  localStorage.setItem('orgs', JSON.stringify(orgs));
+  console.log(orgs);
  return fetchReturned['included'].filter(element => element.type == 'pictures');
 }
 
@@ -174,6 +176,8 @@ function main(){
 $('.fetch').click(function() {
     console.log('Furiends List Clicked!');
     localStorage.setItem('pettentials', JSON.stringify(arrayOfData));
+    window.location = 'furiends-list.html';
+
   });
 
   $('#restart-button, #restart-footer-button').click(function() {

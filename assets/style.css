@@ -211,7 +211,7 @@ input[type=text]:not(.browser-default) {
 
 .modal .modal-footer {
     background-color: var(--bg-eggplant);
-    margin-bottom: 25px;
+    margin-top: 25px;
 }
 
 .dropdown-content li > a, .dropdown-content li > span {
@@ -240,7 +240,7 @@ input[type=text]:not(.browser-default) {
 
 
 .modal-content{
-    height: 25vh;
+    height: 30vh;
 }
 
 .hide{
