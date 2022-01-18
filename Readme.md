@@ -1,17 +1,29 @@
 # <Furiendr>
 
 ## Description
-
-
-## Table of Contents
-
-## Installation
-
-## Features
+Furiendr is an dynamic and intuitive site that connects people to cats and dogs that are available for adoption and looking for their forever home.  
+The site is designed to allow you to have multiple search criteria so you can narrow down the results to the specific pets you are looking for in your area.  
 
 ## Usage
+Simply log onto the site and fill out the search form.  You will get your results in seconds and will be able to scroll through your results with ease.  
+Scrolling through your results is easy and fun, merely save or remove the animals from the carousel.  Your saved profiles will be waiting for 
+you when you click Furiend's List!
+
+## Features
+Extensive search criteria to personalize your results.
+An easy to use carousel so you can scroll through your results smoothly.
+All saved results go to a results page that is saved for you and can be accessed anytime.
+
+
 
 ## Credits
+Maria Marsolek, Ronnel Abrido, Reid Flamm and Michael Weyer.  
+Materialize.com 
+pixabay.com
+coolors.com
+RescueGroups.org
+https://cat-fact.herokuapp.com/
+https://dog-api.matthewswar.com
 
 ## License
 
@@ -35,4 +47,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
