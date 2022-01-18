@@ -134,7 +134,7 @@ function populatePage()
        resultPetList.append(resultPetCoatLength);
        resultPetList.append(buttonCard);
        buttonCard.append(adoptButton);
-       buttonCard.append(removeButton);
+     //   buttonCard.append(removeButton);
 
   }
 }
