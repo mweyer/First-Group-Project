@@ -61,7 +61,12 @@ h5{
 .btn{
     margin: 1vw;
 }
-
+.modal-content{
+    height: 25vh;
+}
 .modal-footer{
     justify-content: space-evenly;
+}
+#error-message {
+    font-size: 1em;
 }
