@@ -30,10 +30,10 @@ fetch('https://dog-api.matthewswar.com/api/facts')
 });
 
 function fetchFunction() {
-  // $('.loading-screen').removeClass('hide');
-  // $('.row').addClass('hide');
   getFields();
   if (typeParameter && $('#zip-code').val()) {
+    $('.loading-screen').removeClass('hide');
+    $('.row').addClass('hide');
     console.log(typeParameter && $('#zip-code').val());
     localStorage.clear();
     fetchData(filterArray)

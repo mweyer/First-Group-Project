@@ -1,10 +1,12 @@
 * {
-    font-family: 'Dongle', sans-serif;
+    font-family: 'Dongle', 'Comic Sans', sans-serif;
     font-weight: 700;
     line-height: 0.8;
     --bg-eggplant: #4e3b50;
     --btn-junebud: #BDE25C;
     --font-mandarin: #ed7e47;
+    --text-shadow: #2a202b;
+    --text-shadow-2: #403141;
 }
 
 nav .nav-wrapper {
@@ -18,6 +20,7 @@ nav .nav-wrapper {
     position: relative;
     left: 10%;
     width: 50px;
+    filter: drop-shadow(2px 2px 5px var(--text-shadow));
 }
 
 .btn:hover {
@@ -32,6 +35,7 @@ nav .nav-wrapper {
     color: var(--bg-eggplant);
     border-radius: 10px;
     padding-top: 3px;
+    text-shadow: none;
 }
 
 #furiends-button {
@@ -40,40 +44,35 @@ nav .nav-wrapper {
     right: 5%;
 }
 
+ /* Furiendr logo */
 nav .brand-logo.center {
     color: var(--font-mandarin);
-    margin: 15px 0;
+    margin: 12px 0;
     font-size: 3rem;
+    text-shadow: 2px 2px 5px var(--text-shadow);
 }
 
-label span {
+/* label span {
     color: rgb(235, 200, 0);
-}
+} */
 
 div.row {
     display: flex;
 }
 
 .cat-facts-card .card-title, .dog-facts-card .card-title {
-    font-size: 1rem;
+    font-size: 1.25rem;
     display: block;
 }
 
-/* .dog-img {
-    padding-left: auto;
-    padding-right: auto;
-} */
-
-div.cat-facts-card {
-    margin: 300px 5%;
+.cat-facts-card, .dog-facts-card {
+    margin: 300px auto;
     color: var(--bg-eggplant);
-    width: 20%;
+    width: 15%;
 }
 
-div.dog-facts-card {
-    margin: 300px 5%;
-    color: var(--bg-eggplant);
-    width: 20%;
+.cat-facts-card p, .dog-facts-card p {
+    margin: 5px 0;
 }
 
 .furiends-cards {    
@@ -90,11 +89,12 @@ div.dog-facts-card {
 ::placeholder { 
     font-family: 'Dongle', 'Comic Sans', sans-serif;
     font-size: 1rem;
-    padding-left: 10px;
+    color: rgb(4, 4, 4);
 }
 
 label span {
     color: var(--font-mandarin);
+    text-shadow: 2px 2px 2px var(--text-shadow-2);
     margin-left: 5px;
 }
 
@@ -102,21 +102,9 @@ table tr td {
     text-align: left;
 }
 
-/* .cat-facts-card{
-    margin: 250px 15px;
-    width: 22%;
-    color: var(--bg-eggplant);
-}
-
-.dog-facts-card {
-    margin: 250px 15px;
-    width: 22%;
-    color: var(--bg-eggplant);
-} */
-
 .pet-parameters-card {
     margin-top: 40px;
-    width: 60%;
+    width: 50%;
 }
 
 .pet-parameters-card div.card {
@@ -127,42 +115,42 @@ table tr td {
     border-radius: 50px;
     background-color: var(--bg-eggplant);
     color: var(--font-mandarin);
+    text-shadow: 2px 2px 2px var(--text-shadow-2);
     box-shadow: 5px 5px 10px rgb(159, 159, 159);
 }
 
+/* 'Let's make furiends!' */
 .pet-parameters-card .card .card-content .card-title {
-    font-weight: bold;
+    font-weight: 900;
     margin: 30px 0;
-    font-size: 1.6rem;
+    font-size: 2rem;
+    text-shadow: 2px 2px 5px var(--text-shadow);
 }
 
 .select-wrapper input.select-dropdown {
     margin-top: 10px;
     height: 1.25rem;
     background: white;
+    border-bottom: 1px solid var(--font-mandarin);
+    box-shadow: 3px 3px 3px rgb(53, 53, 53);
 }
 
 input[type=text]:not(.browser-default) {
     margin-top: 10px;
     height: 1.25rem;
+    font-size: 1rem;
     background: white;
+    border-bottom: 1px solid var(--font-mandarin);
     font-family: 'Dongle', 'Comic Sans', sans-serif;
     display: block;
+    box-shadow: 3px 3px 3px rgb(53, 53, 53);
 }
 
+/* zip code label */
 .input-field>label {
     /* font-family: 'Dongle', 'Comic Sans', sans-serif; */
     color: var(--font-mandarin);
     font-size: 1.25rem;
-}
-
-.pet-image-card {
-    margin-top: 100px;
-}
-
-.pet-image-card img {
-    width: 400px;
-    height: 400px;
 }
 
 .furiends-list-title
@@ -170,6 +158,7 @@ input[type=text]:not(.browser-default) {
     width:50%;
     margin-left: 25%;
 }
+
 .furiends-cards
 {
     padding: 5px;
@@ -226,11 +215,13 @@ input[type=text]:not(.browser-default) {
 
 .modal .modal-footer {
     background-color: var(--bg-eggplant);
+    margin-bottom: 25px;
 }
 
 .dropdown-content li > a, .dropdown-content li > span {
-    font-size: xx-large;
+    font-size: 1rem;
     color: #ED7E47 !important;
+    text-shadow: none;
 }
 
 @keyframes rotation {
@@ -260,24 +251,109 @@ input[type=text]:not(.browser-default) {
     visibility: hidden;
 }
 
-@media screen and (max-width: 1000px) {
-    .row {
-        display: flex;
-        flex-wrap: wrap;
+@media screen and (max-width: 1600px) {
+    .dog-facts-card, .cat-facts-card {
+        margin: 300px auto;
+        width: 14%;
     }
 
+    .pet-parameters-card {
+        margin: 40px 0;
+        width: 52%;
+    }
+}
+
+@media screen and (max-width: 1480px) {
+    .dog-facts-card, .cat-facts-card {
+        margin: 300px auto;
+        width: 16%;
+    }
+
+    .pet-parameters-card {
+        width: 52%;
+    }
+}
+
+@media screen and (max-width: 1220px) {
+    .dog-facts-card, .cat-facts-card {
+        width: 18%;
+    }
+
+    .pet-parameters-card {
+        width: 58%;
+    }
+  }
+
+  @media screen and (max-width: 1150px) {
     .dog-facts-card, .cat-facts-card {
         display: none;
     }
 
     .pet-parameters-card {
-        margin: 50px 0;
+        margin: 40px auto;
+        width: 59%;
+    }
+  }
+
+  @media screen and (max-width: 1000px) {
+    .dog-facts-card, .cat-facts-card {
+        display: none;
+    }
+
+    .pet-parameters-card {
+        width: 62%;
+    }
+  }
+
+  @media screen and (max-width: 900px) {
+     .pet-parameters-card {
+        width: 67%;
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    .pet-parameters-card {
+        width: 78%;
+    }
+  }
+
+  @media screen and (max-width: 700px) {
+    .pet-parameters-card {
+        width: 85%;
+    }
+
+    #furiends-button {
+        display: none;
+    }
+  }
+
+  @media screen and (max-width: 680px) {
+    .pet-parameters-card {
+        width: 90%;
+    }
+  }
+
+  @media screen and (max-width: 630px) {
+    /* .dog-facts-card, .cat-facts-card {
+        display: none;
+    }
+     */
+    /* #furiends-button {
+        display: none;
+    } */
+    .pet-parameters-card {
+        margin: 40px auto;
         width: 100%;
     }
   }
 
-  @media screen and (max-width: 600px) {
-    #furiends-button {
-        display: none;
+  @media screen and (max-width: 580px) {
+    .pet-parameters-card {
+        margin: 40px auto;
+        width: 100%;
+    }
+
+    .pet-parameters-card div.card {
+        padding: 0 10px;
     }
   }
